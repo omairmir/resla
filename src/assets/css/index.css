@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "flowbite";
+
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+  font-family: "VisbyCF";
+  font-style: normal;
+  font-weight: 100;
+  src: url(" ../font/VisbyCF-Thin.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../font/VisbyCF-Light.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/VisbyCF-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../font/VisbyCF-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../font/VisbyCF-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../font/VisbyCF-DemiBold.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../font/VisbyCF-ExtraBold.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: normal;
+  font-weight: 900;
+  src: url("../font/VisbyCF-Heavy.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: oblique;
+  font-weight: 100;
+  src: url("../font/VisbyCF-ThinOblique.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: oblique;
+  font-weight: 300;
+  src: url("../font/VisbyCF-LightOblique.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: oblique;
+  font-weight: 400;
+  src: url("../font/VisbyCF-RegularOblique.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: oblique;
+  font-weight: 500;
+  src: url("../font/VisbyCF-MediumOblique.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: oblique;
+  font-weight: 700;
+  src: url("../font/VisbyCF-BoldOblique.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: oblique;
+  font-weight: 600;
+  src: url("../font/VisbyCF-DemiBoldOblique.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: oblique;
+  font-weight: 800;
+  src: url("../font/VisbyCF-ExtraBoldOblique.otf") format("opentype");
+}
+@font-face {
+  font-family: "VisbyCF";
+  font-style: oblique;
+  font-weight: 900;
+  src: url("../font/VisbyCF-HeavyOblique.otf") format("opentype");
+}
+body {
+    font-family: "VisbyCF", serif;
+    background-color: '#F5F5F7';
+  }
+/* h1 {
+  font-weight: bold !important;
+}
+
+.navbar {
+  background: #0000ff !important;
+}
+.btn,
+.btn-secondary,
+.btn-primary {
+}
+a,
+a:hover {
+  text-decoration: none !important;
+  border-radius: 2rem !important;
+  color: black;
+}
+.btn {
+  font-weight: 500 !important;
+}
+.card-header,
+.card-footer {
+  background-color: transparent;
+}
+.card,
+.card-header,
+.card-footer {
+  border: none;
+}
+.badge {
+  border: #0000ff 1px solid !important;
+  font-weight: bold !important;
+  vertical-align: middle !important;
+  background-color: #0000ff !important;
+}
+button.active,
+.VueCarousel-dot--active {
+  background-color: #0000ff !important;
+}
+.VueCarousel-dot {
+  width: 0.75rem !important;
+  height: 0.75rem !important;
+  border-radius: 50% !important;
+}
+.carousel-indicators [data-bs-target] {
+  background-color: lightgrey;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+.carousel-indicators {
+  position: unset !important;
+}
+.btn-primary {
+  background-color: #0000ff !important;
+  border-color: #0000ff !important;
+  color: white !important;
+  opacity: 100 !important;
+}
+.btn-secondary,
+.btn-close {
+  background-color: white !important;
+  border-color: white !important;
+  color: #0000ff !important;
+  opacity: 100 !important;
+}
+.btn-transparent,
+.btn-transparent:hover {
+  border-color: transparent !important;
+  background-color: transparent !important;
+}
+.blue {
+  background-color: #0000ff !important;
+}
+.black {
+  background-color: black !important;
+}
+.white {
+  color: white !important;
+}
+.highlighted {
+  color: #0000ff !important;
+  background: linear-gradient(to top, #d6faff 50%, transparent 50%);
+}
+.highlighted-desktop {
+  color: black !important;
+  background: linear-gradient(to top, #d6faff 50%, #d6faff 50%);
+}
+.fw-100 {
+  font-weight: 100 !important;
+}
+.fw-200 {
+  font-weight: 200 !important;
+}
+.fw-300 {
+  font-weight: 300 !important;
+}
+.fw-400 {
+  font-weight: 400 !important;
+}
+.fw-500 {
+  font-weight: 500 !important;
+}
+.fw-600 {
+  font-weight: 600 !important;
+}
+.fw-700 {
+  font-weight: 700 !important;
+}
+.fw-800 {
+  font-weight: 800 !important;
+}
+.fw-900 {
+  font-weight: 900 !important;
+}
+.secondary-border {
+  border-color: #0000ff !important;
+  border-width: 2px !important;
+}
+.tertiary-border {
+  border-color: #d6faff !important;
+  border-width: 2px !important;
+}
+.grey-border {
+  border-color: #212529 !important;
+}
+.grey-color {
+  color: darkgrey !important;
+}
+.primary-color {
+  color: #0000ff !important;
+}
+.offcanvas.offcanvas-top {
+  height: 100vh;
+}
+
+.timeline-with-icons {
+  border-left: 4px solid #d6faff;
+  position: relative;
+  list-style: none;
+}
+.timeline-with-icons-desktop {
+  border-top: 4px solid #d6faff;
+  list-style: none;
+}
+
+.timeline-with-icons .timeline-item {
+  position: relative;
+}
+
+.timeline-with-icons .timeline-item:after {
+  position: absolute;
+  display: block;
+  top: 0;
+}
+
+.timeline-with-icons .timeline-icon {
+  position: absolute;
+  left: -48px;
+  background-color: white;
+  color: #0000ff;
+  border-radius: 50%;
+  height: auto;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.display-3 {
+  line-height: 1.1 !important;
+}
+.nav-link {
+  font-size: 1rem !important;
+}
+.rounded-3 {
+  border-radius: 0.85rem !important;
+}
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05) !important;
+} */

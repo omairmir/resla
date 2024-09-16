@@ -1,0 +1,163 @@
+<template>
+  <div class="border-x border-primary-700">
+    <div class="py-20 lg:px-0 px-6 max-w-content w-full mx-auto flex flex-col gap-6 text-left">
+        <!--heading-->
+        <div class="flex flex-col gap-3">
+          <div class="flex justify-between">
+            <h1 class="font-medium text-heading-1 leading-10 tracking-negative-3 text-primary-100">
+              Collision Protection
+            </h1>
+            <button type="button" @click="triggerPrint" class="hidden md:block p-0.5 focus:ring-0 size-6">
+              <PrinterIcon></PrinterIcon>
+            </button>
+          </div>
+
+          <p class="block font-urbanist text-base text-primary-100">
+            Last Updated
+            {{
+              new Intl.DateTimeFormat("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }).format(new Date(getContract.updated_at))
+            }}.
+          </p>
+        </div>
+        <div class="bg-primary-700 w-full h-px"></div>
+
+        <div v-html="outputHtml" id="collision-protection-html"></div>
+    </div>
+    <!--cta section-->
+    <LegalPageCta></LegalPageCta>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import axios from "axios";
+import PrinterIcon from "@/components/icons/PrinterIcon.vue";
+import LegalPageCta from '@/components/LegalPageCta.vue'
+
+export default {
+  name: "CollisionProtection",
+  components: {
+    PrinterIcon,
+    LegalPageCta
+  },
+  data: function () {
+    return {
+      contracts: [],
+      state: this.$route.query.state ? this.$route.query.state : "",
+    };
+  },
+  beforeMount: function () {
+    this.getContracts();
+  },
+  methods: {
+    getContracts: function () {
+      if (!this.state) {
+        this.$router.push("/error");
+      }
+      this.$store.commit("startLoading");
+      axios
+        .get(this.$store.state.root_url + "/waivers")
+        .then((response) => {
+          console.log(response.data);
+          this.contracts = response.data;
+          if (
+            !this.contracts.find((contract) => {
+              return contract.state == this.state.toUpperCase();
+            })
+          ) {
+            this.$router.push("/error");
+          }
+          this.$store.commit("stopLoading");
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$router.push("/error");
+          this.$store.commit("stopLoading");
+        });
+    },
+    triggerPrint() {
+      // print method can be refactor if needed
+      const content = document.getElementById(
+        "collision-protection-html"
+      ).innerHTML;
+      const printWindow = window.open("");
+
+      printWindow.document.write(`
+    <html>
+      <head>
+        <title>Collision Protection | Resla</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+          }
+          #collision-protection-html {
+            margin: 20px;
+            
+          }
+           h6 {
+            font-size: 2rem;
+            margin-top:24px;
+            margin-bottom:12px; 
+          }
+          p{
+           font-size:1rem;
+          }
+        </style>
+      </head>
+      <body>
+        ${content}
+      </body>
+    </html>
+  `);
+
+      printWindow.print();
+    },
+  },
+  computed: {
+    getContract: function () {
+      return this.contracts.find((contract) => {
+        return contract.state == this.state.toUpperCase();
+      });
+    },
+    outputHtml: function () {
+      const price = this.$route.query.price ? this.$route.query.price : "";
+      // Replace the ${price} placeholders with the actual price value
+      let htmlString = this.getContract.html.replace(/\$\{price\}/g, price);
+      // Remove numbers and dots from the start of headings
+      htmlString = htmlString.replace(
+        /<(h[1-6])[^>]*>(\d+\.\s*)+(.*?)<\/\1>/g,
+        (match, p1, p2, p3) => {
+          return `<${p1}>${p3}</${p1}>`;
+        }
+      );
+      return htmlString;
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+#collision-protection-html {
+  p {
+    @apply font-urbanist font-normal text-base leading-[25.6px] text-primary-300 mb-3;
+  }
+
+  h6 {
+    @apply text-heading-2 leading-8 font-medium text-primary-100 mb-3;
+    margin-top: 24px !important;
+    /*  mt-4 bootstrap class is being applied need to override*/
+  }
+
+  ol {
+    @apply list-decimal list-inside pl-2 font-urbanist font-normal text-base leading-[25.6px] text-primary-300;
+  }
+
+  li {
+    @apply mb-2;
+  }
+}
+</style>
