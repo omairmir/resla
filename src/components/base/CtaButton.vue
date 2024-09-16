@@ -17,7 +17,9 @@
       </svg>
     </span>
     <slot name="leading"></slot>
-    <slot></slot>
+    <div v-if="$slots.default" class="mt-px">
+      <slot></slot>
+    </div>
     <slot name="trailing"></slot>
     <!-- Render forward icon if trailingIcon prop is passed -->
     <span v-if="trailingIcon" class="block size-6 p-1">

@@ -134,7 +134,7 @@ export default {
       const baseClasses =
         "transform pointer-events-none";
       const floatingClasses =
-        "text-xs leading-[10.2px] -translate-y-5 !text-primary-200";
+        "text-xs leading-[10.2px] -translate-y-4 !text-primary-200";
 
       return twMerge(
         baseClasses,
