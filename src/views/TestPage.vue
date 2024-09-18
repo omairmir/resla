@@ -36,26 +36,41 @@
       <TextInput id="test" label="Label" placeholder="place" size="small"></TextInput>
       <TextInput id="test" label="Label" placeholder="place" size="small" is-rounded icon></TextInput>
     </div>
-
-    <div>Chips Button</div>
+    <hr color-primary-100 width="100%" />
+    <div>Chips</div>
     <div class="flex items-center gap-10">
-      <ChipsButton size="small">Label</ChipsButton>
-      <ChipsButton size="small" isDisabled>Label</ChipsButton>
+      <ChipsButton>Label</ChipsButton>
+      <ChipsButton selected>Label</ChipsButton>
+      <ChipsButton  isDisabled>Label</ChipsButton>
+      <ChipsButton selected isDisabled>Label</ChipsButton>
+    </div>
+    <div>Color Chips</div>
+    <div class="flex items-center gap-10">
+      <ColorChip></ColorChip>
+      <ColorChip color="blue" selected></ColorChip>
+      <ColorChip color="black" ></ColorChip>
+      <ColorChip color="pearl"></ColorChip>
+      <ColorChip color="silver"></ColorChip>
+      <ColorChip isDisabled></ColorChip>
+      <ColorChip selected isDisabled></ColorChip>
+
+
     </div>
 
   </div>
 </template>
 
 <script>
-import ChipsButton from "@/components/base/Chips.vue";
-import ButtonComponent from "../components/base/ButtonComponent.vue";
+import ChipsButton from "@/components/base/Chip.vue";
+import ButtonComponent from "../components/base/CtaButton.vue";
 import TextInput from "@/components/base/TextInput.vue";
-
+import ColorChip from '@/components/base/ColorChip.vue'
 export default {
   components: {
     ButtonComponent,
     TextInput,
     ChipsButton,
+    ColorChip
   },
 };
 </script>
