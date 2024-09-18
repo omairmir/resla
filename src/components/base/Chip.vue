@@ -42,11 +42,11 @@ export default {
             const defaultClasses =
                 "border-primary-700 bg-primary-1000 hover:bg-primary-900 text-primary-100";
             const selectedClasses =
-                "text-white bg-primary-100 hover:bg-primary-100 py-2 pr-2 pl-4";
+                "text-white bg-primary-100 hover:bg-primary-100 pr-2 pl-4";
             const disabledClasses =
                 "text-primary-600 bg-primary-1000 cursor-not-allowed";
             const selectedDisabledClasses =
-                "text-primary-1000 bg-primary-800 cursor-not-allowed py-2 pr-2 pl-4";
+                "text-primary-1000 bg-primary-800 cursor-not-allowed pr-2 pl-4";
 
             const finalClasses = twMerge(
                 baseClasses,
@@ -69,7 +69,7 @@ export default {
         },
     },
     methods: {
-        // make it toggle if required
+        // make it toggle if needed
         selectChip() {
             if (this.isDisabled) return;
             this.isSelected = true;

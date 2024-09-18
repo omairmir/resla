@@ -1,5 +1,5 @@
 <template>
-  <button :class="buttonClass" :type="type" :disabled="isDisabled">
+  <button :class="buttonClass" :type="type" :disabled="isDisabled" @click.stop="handleClick">
     <!-- Render back icon if leadingIcon prop is passed -->
     <span v-if="leadingIcon" class="block size-6 p-1">
       <svg
@@ -120,5 +120,12 @@ export default {
       return twMerge(baseClasses, sizeClasses[this.size], finalVariantClasses);
     },
   },
+  methods:{
+    handleClick(event) {
+      if (!this.isDisabled) {
+        this.$emit('click', event); 
+      }
+    },
+  }
 };
 </script>
