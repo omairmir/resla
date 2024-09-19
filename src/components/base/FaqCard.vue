@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import { twMerge } from 'tailwind-merge';
 
 export default {
     name: 'FaqCard',
@@ -78,7 +77,7 @@ export default {
     computed: {
         buttonClass() {
             const baseClasses = "flex border-b border-primary-70 text-primary-200 bg-primary-1000 hover:bg-primary-900 items-center justify-between py-5 px-6 gap-6 cursor-pointer";
-            return twMerge(baseClasses);
+            return baseClasses;
         },
     },
     methods: {
