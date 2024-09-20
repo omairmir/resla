@@ -9,10 +9,7 @@
     <div v-show="isOpen" :class="mergedDropDownClass">
       <div
         class="grid grid-cols-2 lg:grid-cols-4 bg-primary-1000 gap-x-4 gap-y-5 lg:border border-resla-ebony-70 p-6 md:rounded-xl">
-        <ModelCard imgSrc="model-3-front.png" name="Model 3" url="#" />
-        <ModelCard imgSrc="model-y.png" name="Model Y" url="#" />
-        <ModelCard imgSrc="model-s.png" name="Model S" url="#" />
-        <ModelCard imgSrc="model-x.png" name="Model X" url="#" />
+        <ModelLink v-for="model in navModelList" :key="model.name" :imgSrc="model.image" :name="model.name" :url="model.url" />
       </div>
       <div class="flex lg:hidden p-6 !pt-4 bg-primary-1000">
         <button type="button"
@@ -32,13 +29,13 @@
 </template>
 
 <script>
-import ModelCard from "@/components/ModelCard.vue";
+import ModelLink from "@/components/base/ModelLink.vue";
 import { twMerge } from "tailwind-merge";
 
 export default {
   name: "NavModels",
   components: {
-    ModelCard,
+    ModelLink,
   },
   props: {
     dropdownClass: {
@@ -52,6 +49,27 @@ export default {
     return {
       isOpen: false,
       blurTimeout: false,
+      navModelList:[{
+                image:'model-3-front.png',
+                name:'Model 3',
+                url:'' // TODO: add link to new model detail page
+            },
+            {
+                image:'model-y.png',
+                name:'Model Y',
+                url:''
+            },
+            {
+                image:'model-s.png',
+                name:'Model S',
+                url:'#'
+            },
+            {
+                image:'model-x.png',
+                name:'Model X',
+                url:''
+            }
+        ]
     };
   },
   computed: {

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <ModelsList></ModelsList>
+    <div  class="grid grid-flow-row md:grid-flow-col gap-6 py-5 px-10 border-y border-resla-ebony-70">
+      <ModelLink v-for="model in footerModels" :key="model.name" :imgSrc="model.image" :name="model.name" :url="model.url" />
+    </div>
     <div class="flex flex-col lg:flex-row justify-between px-6 lg:px-10 mx-auto py-10 gap-10 lg:gap-20">
     <div class="w-full lg:max-w-[30rem] flex flex-col justify-between gap-y-12">
       <div class="logo">
@@ -112,12 +114,12 @@
 </template>
 
 <script>
-import ModelsList from "@/components/home/ModelsList.vue";
+import ModelLink from "@/components/base/ModelLink.vue";
 
 export default {
   name: "FooterSection",
   components:{
-    ModelsList
+    ModelLink
   },
   data(){
     return{
@@ -154,6 +156,27 @@ export default {
           ],
         },
       ],
+      footerModels:[{
+                image:'model-3-front.png',
+                name:'Model 3',
+                url:'' // TODO: add link to new model detail page
+            },
+            {
+                image:'model-y.png',
+                name:'Model Y',
+                url:''
+            },
+            {
+                image:'model-s.png',
+                name:'Model S',
+                url:''
+            },
+            {
+                image:'model-x.png',
+                name:'Model X',
+                url:''
+            }
+        ]
     }
   }
 };
