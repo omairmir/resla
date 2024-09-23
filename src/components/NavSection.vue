@@ -4,21 +4,21 @@
             class="relative flex flex-col lg:flex-row items-center justify-between min-h-[68px] lg:px-10 lg:py-3 gap-x-4 bg-primary-1000" :class="{'border-b border-primary-700':isScrolled}">
             <div class="flex w-full lg:w-auto justify-between items-center order-1 lg:order-none lg:!p-0 py-4 px-6">
                 <!--logo-->
-                <router-link to="/" tag="a">
+                <router-link to="/">
                     <img src="../assets/resla-logo-black-rgb.svg" class="w-28 h-4" alt="resla logo black" />
                 </router-link>
                 <!--mobile nav-->
                 <div class="block lg:hidden order-2">
                     <NavModels class="!static" :dropdown-class="'w-[96%]'">
                         <template #button>
-                            <button type="button" class="px-1.5 py-1">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            <CtaButton variant="tertiary" class="w-6 h-6">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 6H19.5" stroke="#44403C" stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M4.5 12H19.5" stroke="#44403C" stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M4.5 18H19.5" stroke="#44403C" stroke-width="1.5" stroke-linecap="round" />
+                                    <path d="M4.5 6H19.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    <path d="M4.5 12H19.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    <path d="M4.5 18H19.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                 </svg>
-                            </button>
+                            </CtaButton>
                         </template>
                     </NavModels>
                 </div>
@@ -32,9 +32,9 @@
             <!--desktop nav-->
             <div class="hidden lg:flex items-center gap-8 order-3">
                 <NavModels class="!static" :dropdown-class="'w-[96%]'" />
-                <router-link tag="p" to="/" class="text-resla-ebony-40 font-urbanist font-semibold text-base cursor-pointer">
+                <CtaButton to="#" variant="tertiary">
                     Sign in
-                </router-link>
+                </CtaButton>
             </div>
         </div>
         <!-- Background overlay -->
@@ -47,12 +47,13 @@
 const BREAKPOINT = 1024;
 import NavInputs from "@/components/NavInputs.vue";
 import NavModels from "@/components/NavModels.vue";
-
+import CtaButton from "@/components/base/CtaButton.vue";
 export default {
     name: "NavBar",
     components: {
         NavInputs,
         NavModels,
+        CtaButton
     },
     data() {
         return {

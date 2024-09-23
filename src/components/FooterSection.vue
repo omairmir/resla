@@ -99,12 +99,12 @@
     <!--Nav-->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 w-full">
       <div v-for="nav in navigationLinks" :key="nav.title" class="flex flex-col gap-4 w-full">
-        <div class="font-urbanist font-normal text-sm leading-[22px] text-resla-ebony-50">
+        <div class="font-urbanist font-normal text-sm leading-[22.4px] text-resla-ebony-50">
           {{ nav.title }}
         </div>
-        <router-link v-for="(link,index) in nav.links" :key="index" :to="link.path" tag="button" class="w-max font-urbanist font-semibold text-base leading-[22px] text-resla-ebony-40">
+        <CtaButton v-for="(link,index) in nav.links" :key="index" :to="link.path" variant="tertiary" class="w-max">
           {{link.name}}
-        </router-link>
+        </CtaButton>
         
       </div>
     </div>
@@ -115,11 +115,13 @@
 
 <script>
 import ModelLink from "@/components/base/ModelLink.vue";
+import CtaButton from "./base/CtaButton.vue";
 
 export default {
   name: "FooterSection",
   components:{
-    ModelLink
+    ModelLink,
+    CtaButton
   },
   data(){
     return{

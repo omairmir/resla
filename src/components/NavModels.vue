@@ -3,26 +3,16 @@
     <div v-if="$slots.button" @click="toggleDropdown">
       <slot name="button"></slot>
     </div>
-    <p v-else :class="mergedButtonClass" @click="toggleDropdown">
+    <CtaButton v-else variant="tertiary" @click="toggleDropdown">
       Models
-    </p>
+    </CtaButton>
     <div v-show="isOpen" :class="mergedDropDownClass">
       <div
         class="grid grid-cols-2 lg:grid-cols-4 bg-primary-1000 gap-x-4 gap-y-5 lg:border border-resla-ebony-70 p-6 md:rounded-xl">
         <ModelLink v-for="model in navModelList" :key="model.name" :imgSrc="model.image" :name="model.name" :url="model.url" />
       </div>
       <div class="flex lg:hidden p-6 !pt-4 bg-primary-1000">
-        <button type="button"
-          class="w-full flex justify-center rounded-lg bg-resla-ebony-90 border border-resla-ebony-70 py-3 px-6 gap-2.5">
-          <span class="font-urbanist font-semibold text-base text-resla-ebony-20">
-            Sign In
-          </span>
-          <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M12.9697 5.46967C13.2626 5.17678 13.7374 5.17678 14.0303 5.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L14.0303 18.5303C13.7374 18.8232 13.2626 18.8232 12.9697 18.5303C12.6768 18.2374 12.6768 17.7626 12.9697 17.4697L17.6893 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H17.6893L12.9697 6.53033C12.6768 6.23744 12.6768 5.76256 12.9697 5.46967Z"
-              fill="#1E1B18" />
-          </svg>
-        </button>
+        <CtaButton to="#" variant="secondary" trailing-icon class="w-full">Sign In</CtaButton>
       </div>
     </div>
   </div>
@@ -31,17 +21,16 @@
 <script>
 import ModelLink from "@/components/base/ModelLink.vue";
 import { twMerge } from "tailwind-merge";
+import CtaButton from "./base/CtaButton.vue";
 
 export default {
   name: "NavModels",
   components: {
     ModelLink,
+    CtaButton
   },
   props: {
     dropdownClass: {
-      type: String,
-    },
-    buttonClass: {
       type: String,
     },
   },
@@ -73,12 +62,6 @@ export default {
     };
   },
   computed: {
-    mergedButtonClass() {
-      return twMerge(
-        "text-resla-ebony-40 font-urbanist font-semibold text-base cursor-pointer",
-        this.buttonClass
-      );
-    },
     mergedDropDownClass() {
       return twMerge(
         "absolute z-50 left-1/2 transform -translate-x-1/2 top-[82px]",

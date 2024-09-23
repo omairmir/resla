@@ -8,24 +8,21 @@
         <!--date picker-->
         <RangePicker :id="datePickerID" class="!static w-full" isNav :is-scrolled-past="isScrolledPast" :inputClass="'py-2 lg:border-r border-resla-ebony-70'"
             :picker-class="'rounded-lg overflow-hidden top-14 lg:top-[70px]'" placeHolder="Dates" />
-        <button type="button" class="hidden lg:flex p-2.5">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M10.303 4.46967C10.5959 4.17678 11.0708 4.17678 11.3637 4.46967L16.3637 9.46967C16.6566 9.76256 16.6566 10.2374 16.3637 10.5303L11.3637 15.5303C11.0708 15.8232 10.5959 15.8232 10.303 15.5303C10.0101 15.2374 10.0101 14.7626 10.303 14.4697L14.0227 10.75H4.16667C3.75246 10.75 3.41667 10.4142 3.41667 10C3.41667 9.58579 3.75246 9.25 4.16667 9.25H14.0227L10.303 5.53033C10.0101 5.23744 10.0101 4.76256 10.303 4.46967Z"
-                    fill="#44403C" />
-            </svg>
-        </button>
+        
+        <CtaButton variant="tertiary" trailing-icon class="p-2"/>
     </div>
 </template>
 
 <script>
 import RangePicker from "@/components/RangePicker.vue";
 import AutoComplete from "@/components/AutoComplete.vue";
+import CtaButton from "./base/CtaButton.vue";
 export default {
     name: "NavInputs",
     components: {
         RangePicker,
         AutoComplete,
+        CtaButton
     },
     props: {
         datePickerID: {
