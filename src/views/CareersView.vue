@@ -11,11 +11,8 @@
         Available Positions
       </h1>
       <!-- Loader -->
-      <div v-if="loading" class="flex w-full items-center justify-center">
-        <div class="text-center">
-          <div class="mt-3 border-4 border-t-4 border-primary-700 rounded-full w-12 h-12 animate-spin" role="status">
-          </div>
-        </div>
+      <div v-if="loading" class="flex w-full items-center justify-center h-max">
+        <LoadingAnimation :full-screen="false"></LoadingAnimation>
       </div>
       <div v-for="department in filteredDepartments" :key="'department-' + department.id" class="flex flex-col gap-6">
         <!-- Department Name -->
@@ -35,12 +32,14 @@
 import axios from "axios";
 import CareersCard from '@/components/careers/CareersCard.vue';
 import LegalPageCta from "@/components/LegalPageCta.vue";
+import LoadingAnimation from "@/components/LoadingAnimation.vue";
 
 export default {
   name: "CareersView",
   components: {
     CareersCard,
     LegalPageCta,
+    LoadingAnimation
   },
   data: function () {
     return {
@@ -55,10 +54,11 @@ export default {
     };
   },
   mounted() {
-    this.getData();
+    this.getJobs();
   },
   methods: {
-    getData: function () {
+    // use this method in case company detail is required
+    getCompanyDetail() {
       axios
         .get(this.url + "boards/resla")
         .then((response) => {
@@ -69,7 +69,7 @@ export default {
           console.error('Error fetching company data:', error);
         });
     },
-    jobs: function () {
+    getJobs() {
       axios
         .get(this.url + "boards/resla/departments")
         .then((response) => {
@@ -81,14 +81,6 @@ export default {
         .finally(() => {
           this.loading = false;
         });
-    },
-    newCheck: function (date_string) {
-      const now = new Date();
-      const targetDate = new Date(date_string);
-      const differenceInTime = now.getTime() - targetDate.getTime();
-      const differenceInDays = differenceInTime / (1000 * 3600 * 24);
-
-      return differenceInDays <= 7;
     },
   },
   computed: {

@@ -12,7 +12,7 @@
             <!-- Colors Section -->
             <div class="hidden md:flex items-center gap-3">
               <p class="font-normal text-resla-ebony-10 text-base leading-6">Available in</p>
-              <div class="flex gap-1">
+              <div class="flex -space-x-1">
                 <div 
                   v-for="(color, index) in colorGradients"
                   :key="index"
@@ -34,7 +34,7 @@
         <!-- Mobile Colors Section -->
         <div class="flex w-full md:hidden items-center gap-3">
           <p class="font-normal text-resla-ebony-10 text-base leading-6">Available in</p>
-          <div class="flex gap-1">
+          <div class="flex -space-x-1">
             <div 
               v-for="(color, index) in colorGradients"
               :key="index"

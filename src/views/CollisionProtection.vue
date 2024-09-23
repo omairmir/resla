@@ -1,6 +1,7 @@
 <template>
-  <div class="border-x border-primary-700">
+  <div class="border-x border-primary-700 min-h-screen">
     <div class="py-20 lg:px-0 px-6 max-w-content w-full mx-auto flex flex-col gap-6 text-left">
+      <template v-if="getContract">
         <!--heading-->
         <div class="flex flex-col gap-3">
           <div class="flex justify-between">
@@ -15,17 +16,19 @@
           <p class="block font-urbanist text-base text-primary-100">
             Last Updated
             {{
-              new Intl.DateTimeFormat("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              }).format(new Date(getContract.updated_at))
+            new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            }).format(new Date(getContract.updated_at))
             }}.
           </p>
         </div>
         <div class="bg-primary-700 w-full h-px"></div>
-
+        <!--agreement-->
         <div v-html="outputHtml" id="collision-protection-html"></div>
+      </template>
+
     </div>
     <!--cta section-->
     <LegalPageCta></LegalPageCta>
@@ -33,7 +36,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import axios from "axios";
 import PrinterIcon from "@/components/icons/PrinterIcon.vue";
 import LegalPageCta from '@/components/LegalPageCta.vue'
@@ -48,6 +50,9 @@ export default {
     return {
       contracts: [],
       state: this.$route.query.state ? this.$route.query.state : "",
+      type: this.$route.query.type ? this.$route.query.type : "DAMAGE_WAIVER",
+      page: this.$route.query.page ? this.$route.query.page : 1,
+      size: this.$route.query.size ? this.$route.query.size : 50,
     };
   },
   beforeMount: function () {
@@ -58,14 +63,14 @@ export default {
       if (!this.state) {
         this.$router.push("/error");
       }
+      const url = `https://resla-app-api-staging.onrender.com/api/v1/contracts?type=${this.type}&page=${this.page}&size=${this.size}`;
       this.$store.commit("startLoading");
       axios
-        .get(this.$store.state.root_url + "/waivers")
+        .get(url)
         .then((response) => {
-          console.log(response.data);
           this.contracts = response.data;
           if (
-            !this.contracts.find((contract) => {
+            !this.contracts.items.find((contract) => {
               return contract.state == this.state.toUpperCase();
             })
           ) {
@@ -119,7 +124,8 @@ export default {
   },
   computed: {
     getContract: function () {
-      return this.contracts.find((contract) => {
+      if (!this.contracts.items) return null;
+      return this.contracts.items.find((contract) => {
         return contract.state == this.state.toUpperCase();
       });
     },
@@ -128,12 +134,12 @@ export default {
       // Replace the ${price} placeholders with the actual price value
       let htmlString = this.getContract.html.replace(/\$\{price\}/g, price);
       // Remove numbers and dots from the start of headings
-      htmlString = htmlString.replace(
-        /<(h[1-6])[^>]*>(\d+\.\s*)+(.*?)<\/\1>/g,
-        (match, p1, p2, p3) => {
-          return `<${p1}>${p3}</${p1}>`;
-        }
-      );
+      // htmlString = htmlString.replace(
+      //   /<(h[1-6])[^>]*>(\d+\.\s*)+(.*?)<\/\1>/g,
+      //   (match, p1, p2, p3) => {
+      //     return `<${p1}>${p3}</${p1}>`;
+      //   }
+      // );
       return htmlString;
     },
   },

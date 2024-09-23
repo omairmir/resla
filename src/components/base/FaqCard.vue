@@ -39,7 +39,7 @@
         <!-- Answer Section with transition -->
         <transition name="fade">
             <div v-if="isOpen && !url" class="px-6 py-4 overflow-hidden">
-                <p class="text-base text-resla-ebony-50">
+                <p class="text-base font-urbanist leading-6.5 text-primary-300">
                     {{ answer }}
                 </p>
             </div>
@@ -68,15 +68,19 @@ export default {
             type: String,
             default: null,
         },
+        open:{
+            type:Boolean,
+            default:false
+        }
     },
     data() {
         return {
-            isOpen: false,
+            isOpen: this.open,
         };
     },
     computed: {
         buttonClass() {
-            const baseClasses = "flex border-b border-primary-70 text-primary-200 bg-primary-1000 hover:bg-primary-900 items-center justify-between py-5 px-6 gap-6 cursor-pointer";
+            const baseClasses = "flex border-b border-primary-70 text-primary-200 font-medium bg-primary-1000 hover:bg-primary-900 items-center justify-between py-5 px-6 gap-6 cursor-pointer";
             return baseClasses;
         },
     },

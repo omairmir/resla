@@ -1,43 +1,27 @@
 <template>
-  <button :class="buttonClass" :type="type" :disabled="isDisabled" @click.stop="handleClick">
+  <component :is="to ? 'router-link' : 'button'" :to="to" :class="buttonClass" :type="type" :disabled="isDisabled"
+    @click="handleClick">
     <!-- Render back icon if leadingIcon prop is passed -->
-    <span v-if="leadingIcon" class="block size-6 p-1">
-      <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 16 14"
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M7.53033 0.46967C7.82322 0.762563 7.82322 1.23744 7.53033 1.53033L2.81066 6.25H15C15.4142 6.25 15.75 6.58579 15.75 7C15.75 7.41421 15.4142 7.75 15 7.75H2.81066L7.53033 12.4697C7.82322 12.7626 7.82322 13.2374 7.53033 13.5303C7.23744 13.8232 6.76256 13.8232 6.46967 13.5303L0.46967 7.53033C0.176777 7.23744 0.176777 6.76256 0.46967 6.46967L6.46967 0.46967C6.76256 0.176777 7.23744 0.176777 7.53033 0.46967Z"
-        />
+    <span v-if="leadingIcon" class="block size-6">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M11.5303 5.46967C11.8232 5.76256 11.8232 6.23744 11.5303 6.53033L6.81066 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H6.81066L11.5303 17.4697C11.8232 17.7626 11.8232 18.2374 11.5303 18.5303C11.2374 18.8232 10.7626 18.8232 10.4697 18.5303L4.46967 12.5303C4.17678 12.2374 4.17678 11.7626 4.46967 11.4697L10.4697 5.46967C10.7626 5.17678 11.2374 5.17678 11.5303 5.46967Z" />
       </svg>
+
     </span>
     <slot name="leading"></slot>
-    <div v-if="$slots.default" class="mt-px">
+    <div v-if="$slots.default" class="mt-0.5">
       <slot></slot>
     </div>
     <slot name="trailing"></slot>
     <!-- Render forward icon if trailingIcon prop is passed -->
-    <span v-if="trailingIcon" class="block size-6 p-1">
-      <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 16 14"
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M8.46967 0.46967C8.76256 0.176777 9.23744 0.176777 9.53033 0.46967L15.5303 6.46967C15.8232 6.76256 15.8232 7.23744 15.5303 7.53033L9.53033 13.5303C9.23744 13.8232 8.76256 13.8232 8.46967 13.5303C8.17678 13.2374 8.17678 12.7626 8.46967 12.4697L13.1893 7.75H1C0.585786 7.75 0.25 7.41421 0.25 7C0.25 6.58579 0.585786 6.25 1 6.25H13.1893L8.46967 1.53033C8.17678 1.23744 8.17678 0.762563 8.46967 0.46967Z"
-        />
+    <span v-if="trailingIcon" class="block size-6">
+      <svg width="25" height="24" viewBox="0 0 25 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M12.9697 5.46967C13.2626 5.17678 13.7374 5.17678 14.0303 5.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L14.0303 18.5303C13.7374 18.8232 13.2626 18.8232 12.9697 18.5303C12.6768 18.2374 12.6768 17.7626 12.9697 17.4697L17.6893 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H17.6893L12.9697 6.53033C12.6768 6.23744 12.6768 5.76256 12.9697 5.46967Z" />
       </svg>
     </span>
-  </button>
+  </component>
 </template>
 
 <script>
@@ -75,25 +59,29 @@ export default {
       type: Boolean,
       default: false, // Controls whether to show a back icon
     },
+    to: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     buttonClass() {
       const baseClasses =
-        "rounded-lg font-semibold text-base transition duration-200 ease-in-out flex items-center gap-2.5";
+        "rounded-lg font-semibold text-base transition duration-200 ease-in-out flex items-center justify-center gap-2.5";
 
       const sizeClasses = {
         large:
           this.variant === "tertiary"
             ? "!gap-1 p-0"
             : this.variant === "secondary"
-            ? "py-[15px] px-[23px]"
-            : "py-4 px-6", // Adjusted padding for secondary
+              ? "py-[15px] px-[23px]"
+              : "py-4 px-6", // Adjusted padding for secondary
         small:
           this.variant === "tertiary"
             ? "!gap-1 p-0"
             : this.variant === "secondary"
-            ? "py-[9px] px-[19px]"
-            : "py-2.5 px-5",
+              ? "py-[9px] px-[19px]"
+              : "py-2.5 px-5",
       };
       const variantClasses = {
         primary:
@@ -112,18 +100,18 @@ export default {
 
       const finalVariantClasses = this.isDisabled
         ? twMerge(
-            disabledClasses[this.variant],
-            "cursor-not-allowed pointer-events-none" // Common disabled styles
-          )
+          disabledClasses[this.variant],
+          "cursor-not-allowed" // Common disabled styles
+        )
         : variantClasses[this.variant];
 
       return twMerge(baseClasses, sizeClasses[this.size], finalVariantClasses);
     },
   },
-  methods:{
+  methods: {
     handleClick(event) {
       if (!this.isDisabled) {
-        this.$emit('click', event); 
+        this.$emit('click', event);
       }
     },
   }

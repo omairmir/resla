@@ -397,9 +397,9 @@ const routes = [
   },
   {
     path: "/story",
-    name: "test",
+    name: "Story",
     meta: {
-      title: "Component Test",
+      title: "Base Component",
     },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

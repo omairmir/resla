@@ -2,7 +2,7 @@
   <div id="app" class="bg-primary-1000">
     <!--remove max width to make it fluid otherwise it will add blank spaces on both side-->
     <div class="w-full max-w-desktop mx-auto bg-primary-1000">
-      <!-- <LoadingSection></LoadingSection> -->
+    <LoadingAnimation v-if="$store.state.loading"></LoadingAnimation>
     <component :is="currentNav"></component>
     <router-view />
     <component :is="currentFooter"></component>
@@ -26,6 +26,7 @@
 <script>
 import NavSection from "./components/NavSection.vue";
 import FooterSection from "./components/FooterSection.vue";
+import LoadingAnimation from "@/components/LoadingAnimation.vue";
 import { initFlowbite } from "flowbite";
 
 export default {
@@ -33,6 +34,7 @@ export default {
   components: {
     NavSection,
     FooterSection,
+    LoadingAnimation
   },
   computed: {
   currentNav() {
