@@ -12,28 +12,25 @@
             <DatePicker :id="'return'" label="Return Date" class="w-full" :value="returnDate" :min-date="minReturnDate" :inputClass="'border-b lg:border-b-0 lg:border-r border-resla-ebony-70'"
                 placeHolder="Dates" :picker-class="'rounded-lg overflow-hidden'"  @input="handleReturnDate"/>
             <div class=" py-2.5 lg:py-0 px-2.5 bg-resla-ebony-90 w-full lg:w-max">
-                <button type="button"
-                    class="w-full h-11 lg:w-11 bg-resla-ebony-10 rounded-lg p-2.5 flex gap-2.5 justify-center">
-                    <span class="block lg:hidden font-semibold font-urbanist text-base  text-primary-1000">View
-                        Vehicles</span>
-                    <RightArrow class="size-5 mt-0.5 text-white" />
-                </button>
+                <CtaButton trailing-icon size="small" class="hidden lg:block"></CtaButton>
+                <CtaButton trailing-icon size="small" class="block lg:hidden w-full">View
+                    Vehicles</CtaButton>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import RightArrow from "@/components/icons/RightArrow.vue";
 import AutoComplete from "@/components/AutoComplete.vue";
 import DatePicker from "@/components/DatePicker.vue";
+import CtaButton from "@/components/base/CtaButton.vue";
 
 export default {
     name: "HeroSection",
     components: {
-        RightArrow,
         AutoComplete,
-        DatePicker
+        DatePicker,
+        CtaButton
     },
     data() {
         return {

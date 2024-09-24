@@ -5,10 +5,9 @@
       </LoadingAnimation>
       <template v-if="data">
         <div class="flex flex-col gap-4 md:gap-3">
-          <router-link to="/careers" tag="button" class="flex items-center w-max space-x-2">
-            <RightArrow class="size-5 rotate-180"></RightArrow>
-            <span class="block mt-0.5 font-semibold text-base leading-7 text-primary-400">Careers</span>
-          </router-link>
+          <CtaButton to="/careers" variant="tertiary" leading-icon>
+            Careers
+          </CtaButton>
           <!-- Job Title -->
           <h1 class="font-medium text-heading-1 leading-10 tracking-negative-3 text-resla-ebony-1000">{{ data.title }}
           </h1>
@@ -33,10 +32,9 @@
           </div>
         </div>
 
-        <router-link :to="`${$route.path}/apply`" tag="button"
-          class="bg-primary-100 text-primary-1000 font-semibold text-base rounded-lg px-5 py-2.5 w-full md:w-max">
+        <CtaButton :to="`${$route.path}/apply`" size="small" class="w-full md:w-max">
           Apply now
-        </router-link>
+        </CtaButton>
 
         <div class="bg-primary-700 w-full h-px"></div>
 
@@ -71,19 +69,19 @@ import axios from "axios";
 
 import UserIcon from "@/components/icons/UserIcon.vue";
 import LocationIcon from "@/components/icons/PinIcon.vue";
-import RightArrow from "@/components/icons/RightArrow.vue";
 import TimeIcon from "@/components/icons/TimeIcon.vue";
 import LegalPageCta from "@/components/LegalPageCta.vue";
 import LoadingAnimation from "@/components/LoadingAnimation.vue";
+import CtaButton from "@/components/base/CtaButton.vue";
 
 export default {
   components: {
-    RightArrow,
     LocationIcon,
     UserIcon,
     TimeIcon,
     LegalPageCta,
-    LoadingAnimation
+    LoadingAnimation,
+    CtaButton
   },
   name: "JobView",
   data: function () {

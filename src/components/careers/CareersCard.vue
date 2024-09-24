@@ -17,22 +17,21 @@
         </div>
       </div>
     </div>
-    <router-link :to="'/careers/' + id" tag="div" class="cursor-pointer">
-      <RightArrow class="size-6 text-primary-400"></RightArrow>
-    </router-link>
+    <CtaButton :to="'/careers/' + id" variant="tertiary" trailing-icon>
+    </CtaButton>
   </div>
 </template>
 
 <script>
 import TimeIcon from '@/components/icons/TimeIcon.vue';
 import LocationIcon from '@/components/icons/PinIcon.vue';
-import RightArrow from '@/components/icons/RightArrow.vue';
+import CtaButton from '@/components/base/CtaButton.vue';
 
 export default {
   components: {
     LocationIcon,
-    RightArrow,
     TimeIcon,
+    CtaButton
   },
   props: {
     locationName: {

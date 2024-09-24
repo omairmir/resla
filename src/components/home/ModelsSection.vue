@@ -30,7 +30,7 @@ export default {
                     zeroToSixty: '5.1', // 0-60 mph time, adjust as needed
                     topSpeed: '162', // Top speed, adjust as needed
                     dualAWD: true, // Dual all-wheel drive status
-                    colors: ['paint-red', 'paint-blue', 'paint-black']
+                    colors: ['paint-red', 'paint-pearl', 'paint-black', 'paint-blue',]
                 },
                 
                 {

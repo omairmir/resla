@@ -13,20 +13,11 @@
         <ResourcesSection></ResourcesSection>
       </div>
       <CtaSection></CtaSection>
-      
-
     </div>
-    <!-- <MainSection></MainSection>
-    <HowItWorksSection></HowItWorksSection>
-    <CompetitionSection></CompetitionSection>
-    <FeatureSection></FeatureSection>
-    <FaqsSection></FaqsSection>
-    <ReviewSection></ReviewSection> -->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import HeroSection from "@/components/home/HeroSection.vue";
 import IntroVideo from "@/components/home/IntroVideo.vue";
 import LocationsSearch from "@/components/home/LocationsSearch.vue";

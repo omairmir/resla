@@ -7,15 +7,19 @@
             <div class="font-medium text-heading tracking-negative-3 text-black">
                 Ready to get on the road?
             </div>
-            <button type="button" class="rounded-lg py-3 px-6 bg-primary-100">
-                <span class="font-semibold font-urbanist text-base text-primary-1000">Book Now</span>
-            </button>
+            <CtaButton size="large">
+                Book Now
+            </CtaButton>
         </div>
     </div>
 </template>
 
 <script>
+import CtaButton from '@/components/base/CtaButton.vue'
 export default {
     name: 'CtaSection',
+    components:{
+        CtaButton
+    }
 }
 </script>

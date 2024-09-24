@@ -1,6 +1,5 @@
 <template>
     <div class="mt-16 lg:mt-40 gap-10 lg:gap-20 flex flex-col w-full">
-        <!--step 1-->
         <div class="flex items-center flex-col lg:flex-row">
             <div class="flex flex-col gap-8 lg:py-12 lg:pr-20 lg:pl-12 w-full">
                 <p class="text-resla-ebony-50 text-base font-semibold leading-6">
@@ -19,8 +18,9 @@
                 <!--TODO: reviews - can be made carousel-->
                 <ReviewCard></ReviewCard>
             </div>
+            <!--step 1-->
             <div class="flex flex-col gap-6 w-full mt-16 lg:mt-0">
-                <img src="@/assets/img/renting-process-1.png" class="rounded-xl" alt="renting process" />
+                <img src="@/assets/img/renting-process-1.png" class="rounded-xl" alt="renting process" loading="lazy"/>
                 <div class="flex gap-6 items-center">
                     <div class="bg-resla-ebony-90 rounded-lg size-12 flex items-center justify-center">
                         <p class="text-xl leading-9 text-resla-ebony-20 font-medium">1</p>
@@ -34,7 +34,7 @@
         <div class="flex flex-col lg:flex-row" v-for="(step, index) in rentingSteps" :key="index">
             <div class="hidden lg:flex flex-col gap-8 py-12 lg:pr-20 lg:pl-12 w-full"></div>
             <div class="flex flex-col gap-6 w-full">
-                <img :src="getImageUrl(step.imageUrl)" class="rounded-xl" alt="renting process" />
+                <img :src="getImageUrl(step.imageUrl)" class="rounded-xl" alt="renting process" loading="lazy"/>
                 <div class="flex gap-6 items-center">
                     <div class="bg-resla-ebony-90 rounded-lg size-12 flex items-center justify-center">
                         <p class="text-xl leading-9 text-resla-ebony-20 font-medium">

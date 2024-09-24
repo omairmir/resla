@@ -8,9 +8,9 @@
             <h1 class="font-medium text-heading-1 leading-10 tracking-negative-3 text-primary-100">
               Collision Protection
             </h1>
-            <button type="button" @click="triggerPrint" class="hidden md:block p-0.5 focus:ring-0 size-6">
-              <PrinterIcon></PrinterIcon>
-            </button>
+            <CtaButton variant="tertiary" @click="triggerPrint">
+              <PrinterIcon class="size-6"></PrinterIcon>
+            </CtaButton>
           </div>
 
           <p class="block font-urbanist text-base text-primary-100">
@@ -39,11 +39,12 @@
 import axios from "axios";
 import PrinterIcon from "@/components/icons/PrinterIcon.vue";
 import LegalPageCta from '@/components/LegalPageCta.vue'
-
+import CtaButton from "@/components/base/CtaButton.vue";
 export default {
   name: "CollisionProtection",
   components: {
     PrinterIcon,
+    CtaButton,
     LegalPageCta
   },
   data: function () {
@@ -153,9 +154,7 @@ export default {
   }
 
   h6 {
-    @apply text-heading-2 leading-8 font-medium text-primary-100 mb-3;
-    margin-top: 24px !important;
-    /*  mt-4 bootstrap class is being applied need to override*/
+    @apply text-heading-2 leading-8 font-medium text-primary-100 mb-3 mt-6;
   }
 
   ol {

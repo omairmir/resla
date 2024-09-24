@@ -46,11 +46,10 @@
             response. Thanks for applying!
           </p>
         </div>
-        <button type="submit"
-          class="w-max text-center px-6 py-4 rounded-lg border border-primary-700 font-semibold text-base text-primary-1000 bg-primary-100 hover:bg-primary-300"
-          @click="() => this.$router.push('/')">
+
+        <CtaButton to="/">
           Home
-        </button>
+        </CtaButton>
       </div>
     </div>
   </div>
@@ -58,6 +57,7 @@
 
 <script>
 // @ is an alias to /src
+import CtaButton from "@/components/base/CtaButton.vue";
 import CheckIcon from "@/components/icons/CheckIcon.vue";
 import LocationIcon from "@/components/icons/PinIcon.vue";
 import TimeIcon from "@/components/icons/TimeIcon.vue";
@@ -67,6 +67,7 @@ export default {
     CheckIcon,
     LocationIcon,
     TimeIcon,
+    CtaButton
   },
   data() {
     return {

@@ -5,19 +5,9 @@
             <div class="font-medium text-heading-1 leading-10 text-resla-ebony-1000 tracking-negative-3">
                 Resources</div>
             <div class="hidden lg:block border-l border-resla-ebony-80 pl-6">
-                <!--in case of reuse make separate button compoennet-->
-                <button type="button"
-                    class="flex items-center justify-center gap-2 focus:outline-none border-0 bg-transparent">
-                    <p class="text-base leading-6 text-[#323242] font-semibold mt-0.5">More</p>
-                    <div class="size-6">
-                        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M12.4697 5.46967C12.7626 5.17678 13.2374 5.17678 13.5303 5.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L13.5303 18.5303C13.2374 18.8232 12.7626 18.8232 12.4697 18.5303C12.1768 18.2374 12.1768 17.7626 12.4697 17.4697L17.1893 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H17.1893L12.4697 6.53033C12.1768 6.23744 12.1768 5.76256 12.4697 5.46967Z"
-                                fill="#323242" />
-                        </svg>
-                    </div>
-                </button>
+                <CtaButton variant="tertiary" trailing-icon>
+                    More
+                </CtaButton>
             </div>
 
         </div>
@@ -31,9 +21,9 @@
                 <div class="flex gap-1 items-center">
                     <div class="w-full font-medium text-2xl leading-9 text-resla-ebony-1000 tracking-negative-2">
                         How do I find superchargers?</div>
-                    <button type="button" class="border-0 focus:outline-none">
+                    <CtaButton variant="tertiary">
                         <LinkIcon class="size-6"></LinkIcon>
-                    </button>
+                    </CtaButton>
                 </div>
             </div>
             <div class="flex flex-col gap-6 w-full">
@@ -47,40 +37,21 @@
                             <p class="font-medium text-2xl leading-9 text-relsa-ebony-1000">Experience the Tesla
                                 Reengineered Model 3</p>
                         </div>
-                        <button type="button"
-                            class="flex items-center gap-2 focus:outline-none border-0 bg-transparent">
-                            <p class="text-base leading-6 text-[#323242] font-semibold mt-0.5">Read</p>
-                            <div class="size-6">
-                                <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M12.4697 5.46967C12.7626 5.17678 13.2374 5.17678 13.5303 5.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L13.5303 18.5303C13.2374 18.8232 12.7626 18.8232 12.4697 18.5303C12.1768 18.2374 12.1768 17.7626 12.4697 17.4697L17.1893 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H17.1893L12.4697 6.53033C12.1768 6.23744 12.1768 5.76256 12.4697 5.46967Z"
-                                        fill="#323242" />
-                                </svg>
-                            </div>
-                        </button>
+                        <CtaButton variant="tertiary" trailing-icon class="w-max">
+                            Read
+                        </CtaButton>
                     </div>
+                    
                 </div>
-                <!--Faq's - can be a seprate component -->
-                <div class="border border-resla-ebony-70 rounded-xl">
-                    <Accordion v-for="(faq, index) in faqs" :key="index" :question="faq.question" :answer="faq.answer">
-                    </Accordion>
+                <div class="border border-resla-ebony-70 rounded-xl overflow-hidden">
+                    <FaqCard v-for="(faq, index) in faqs" :key="index" :question="faq.question" :answer="faq.answer" :route="faq.route">
+                    </FaqCard>
                 </div>
             </div>
             <div class="block lg:hidden border-t border-resla-ebony-80 pt-6">
-                <!--in case of reuse make separate button compoennet-->
-                <button type="button"
-                    class="flex items-center justify-center gap-2 focus:outline-none border-0 bg-transparent">
-                    <p class="text-base leading-6 text-[#323242] font-semibold mt-0.5">More</p>
-                    <div class="size-6">
-                        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M12.4697 5.46967C12.7626 5.17678 13.2374 5.17678 13.5303 5.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L13.5303 18.5303C13.2374 18.8232 12.7626 18.8232 12.4697 18.5303C12.1768 18.2374 12.1768 17.7626 12.4697 17.4697L17.1893 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H17.1893L12.4697 6.53033C12.1768 6.23744 12.1768 5.76256 12.4697 5.46967Z"
-                                fill="#323242" />
-                        </svg>
-                    </div>
-                </button>
+                <CtaButton variant="tertiary" trailing-icon>
+                    More
+                </CtaButton>
             </div>
         </div>
 
@@ -88,43 +59,52 @@
 </template>
 <script>
 import LinkIcon from '@/components/icons/LinkIcon.vue'
-import Accordion from '@/components/Accordion.vue'
+import CtaButton from '@/components/base/CtaButton.vue'
+import FaqCard from '@/components/base/FaqCard.vue'
 export default {
     name: "ResourcesSection",
     components: {
         LinkIcon,
-        Accordion
+        CtaButton,
+        FaqCard
     },
     data() {
         return {
             faqs: [
                 {
                     question: 'How old do you have to be to rent a Resla?',
-                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    route:'/faqs'
                 },
                 {
                     question: 'What fees does Resla charge?',
-                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    route:'/faqs'
                 },
                 {
                     question: 'Is auto insurance required to rent with Resla?',
-                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    route:'/faqs'
                 },
                 {
                     question: 'Does the damage waiver cover damage to other vehicles?',
-                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    route:'/faqs'
                 },
                 {
                     question: 'Do I need a physical key?',
-                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    route:'/faqs'
                 },
                 {
                     question: 'Is there a limit on the number of miles I drive?',
-                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    route:'/faqs'
                 },
                 {
                     question: 'Does the damage waiver cover damage to other vehicles?',
-                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                    answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    route:'/faqs'
                 }
             ]
 

@@ -106,19 +106,19 @@
               <!-- Yes/No Button Group -->
               <div class="flex gap-3">
                 <button type="button" @click="() => (application.visaSponsorship = 'yes')" :class="{
-                  'bg-primary-200 border-primary-300 text-white':
+                  '!bg-primary-100 !hover:bg-primary-300 border-primary-300 !text-white':
                     application.visaSponsorship === 'yes',
                 }"
-                  class="flex items-center justify-between w-full px-4 py-3 gap-1 transition duration-300 border rounded-lg bg-primary-1000 border-primary-700 hover:bg-primary-400 hover:text-white">
+                  class="flex items-center justify-between w-full px-4 py-3 gap-1 transition duration-300 border rounded-lg bg-primary-1000 border-primary-700 hover:bg-primary-900 hover:text-primary-100">
                   Yes
                   <CheckIcon v-show="application.visaSponsorship === 'yes'" class="size-5" />
                 </button>
 
                 <button type="button" @click="() => (application.visaSponsorship = 'no')" :class="{
-                  'bg-primary-200 border-primary-300 text-white':
+                  '!bg-primary-100 !hover:bg-primary-300 border-primary-300 !text-white':
                     application.visaSponsorship === 'no',
                 }"
-                  class="flex items-center justify-between w-full px-4 py-3 gap-1 transition duration-300 border rounded-lg bg-primary-1000 border-primary-700 hover:bg-primary-400 hover:text-white">
+                  class="flex items-center justify-between w-full px-4 py-3 gap-1 transition duration-300 border rounded-lg bg-primary-1000 border-primary-700 hover:bg-primary-900 hover:text-primary-100">
                   No
                   <CheckIcon v-show="application.visaSponsorship === 'no'" class="size-5" />
                 </button>
@@ -132,19 +132,19 @@
               <!-- Yes/No Button Group -->
               <div class="flex gap-3">
                 <button type="button" @click="() => (application.relocation = 'yes')" :class="{
-                  'bg-primary-200 border-primary-300 text-white':
+                  '!bg-primary-100 !hover:bg-primary-300 border-primary-300 !text-white':
                     application.relocation === 'yes',
                 }"
-                  class="flex items-center justify-between w-full px-4 py-3 gap-1 transition duration-300 border rounded-lg bg-primary-1000 border-primary-700 hover:bg-primary-400 hover:text-white">
+                  class="flex items-center justify-between w-full px-4 py-3 gap-1 transition duration-300 border rounded-lg bg-primary-1000 border-primary-700 hover:bg-primary-900 hover:text-primary-100">
                   Yes
                   <CheckIcon v-show="application.relocation === 'yes'" class="size-5" />
                 </button>
 
                 <button type="button" @click="() => (application.relocation = 'no')" :class="{
-                  'bg-primary-200 border-primary-300 text-white':
+                  '!bg-primary-100 !hover:bg-primary-300 border-primary-300 !text-white':
                     application.relocation === 'no',
                 }"
-                  class="flex items-center justify-between w-full px-4 py-3 gap-1 transition duration-300 border rounded-lg bg-primary-1000 border-primary-700 hover:bg-primary-400 hover:text-white">
+                  class="flex items-center justify-between w-full px-4 py-3 gap-1 transition duration-300 border rounded-lg bg-primary-1000 border-primary-700 hover:bg-primary-900 hover:text-primary-100">
                   No
                   <CheckIcon v-show="application.relocation === 'no'" class="size-5" />
                 </button>
@@ -154,16 +154,12 @@
         </div>
         <!--action-->
         <div class="flex justify-between gap-4">
-          <button type="button"
-            class="w-full md:w-max text-center px-6 py-4 rounded-lg border border-primary-700  font-semibold text-base text-primary-200 bg-primary-900 hover:bg-primary-800"
-            @click="() => this.$router.go(-1)">
-            Cancel
-          </button>
-          <button type="submit"
-            class="w-full md:w-max text-center px-6 py-4 rounded-lg border border-primary-700  font-semibold text-base text-primary-1000 bg-primary-100 hover:bg-primary-300"
-            @click="dummy">
-            Apply
-          </button>
+          <CtaButton variant="secondary" @click="() => this.$router.go(-1)">
+              Cancel
+          </CtaButton>
+          <CtaButton  type="submit">
+              Apply
+          </CtaButton>
         </div>
       </form>
     </div>
@@ -177,7 +173,7 @@ import LocationIcon from "@/components/icons/PinIcon.vue";
 import TimeIcon from "@/components/icons/TimeIcon.vue";
 import UploadFileIcon from "@/components/icons/UploadFileIcon.vue";
 import CheckIcon from "@/components/icons/CheckIcon.vue";
-
+import CtaButton from "@/components/base/CtaButton.vue";
 export default {
   name: "JobApplicationForm",
   components: {
@@ -185,6 +181,7 @@ export default {
     TimeIcon,
     UploadFileIcon,
     CheckIcon,
+    CtaButton
   },
   data() {
     return {
@@ -274,10 +271,6 @@ export default {
           console.log(error);
         });
     },
-    dummy() {
-
-
-    }
   },
 };
 </script>

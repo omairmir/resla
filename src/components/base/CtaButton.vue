@@ -69,19 +69,31 @@ export default {
       const baseClasses =
         "rounded-lg font-semibold text-base transition duration-200 ease-in-out flex items-center justify-center gap-2.5";
 
+
+      // Check if the button has no content (i.e., no default slot)
+      const hasContent = !!this.$slots.default;
+
       const sizeClasses = {
         large:
           this.variant === "tertiary"
             ? "!gap-1 p-0"
             : this.variant === "secondary"
-              ? "py-[15px] px-[23px]"
-              : "py-4 px-6", // Adjusted padding for secondary
+              ? hasContent
+                ? "py-[15px] px-[23px]"
+                : "p-4" // Adjusted padding for large when no content
+              : hasContent
+                ? "py-4 px-6"
+                : "p-4",
         small:
           this.variant === "tertiary"
             ? "!gap-1 p-0"
             : this.variant === "secondary"
-              ? "py-[9px] px-[19px]"
-              : "py-2.5 px-5",
+              ? hasContent
+                ? "py-[9px] px-[19px]"
+                : "-2.5"
+              : hasContent
+                ? "py-2.5 px-5"
+                : "p-2.5",
       };
       const variantClasses = {
         primary:
