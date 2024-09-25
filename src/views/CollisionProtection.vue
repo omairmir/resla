@@ -40,6 +40,7 @@ import axios from "axios";
 import PrinterIcon from "@/components/icons/PrinterIcon.vue";
 import LegalPageCta from '@/components/LegalPageCta.vue'
 import CtaButton from "@/components/base/CtaButton.vue";
+
 export default {
   name: "CollisionProtection",
   components: {
@@ -48,24 +49,32 @@ export default {
     LegalPageCta
   },
   data: function () {
+    const today = new Date().toISOString().split('T')[0];
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowString = tomorrow.toISOString().split('T')[0];
+
     return {
       contracts: [],
       state: this.$route.query.state ? this.$route.query.state : "",
       type: this.$route.query.type ? this.$route.query.type : "DAMAGE_WAIVER",
       page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 50,
+      pickup_at: this.$route.query.pickup_at ? this.$route.query.pickup_at : today,
+      return_at: this.$route.query.return_at ? this.$route.query.return_at : tomorrowString,
     };
   },
   beforeMount: function () {
     this.getContracts();
+    this.$store.commit("startLoading");
   },
   methods: {
     getContracts: function () {
       if (!this.state) {
-        this.$router.push("/error");
+        this.$router.push("*");
       }
-      const url = `https://resla-app-api-staging.onrender.com/api/v1/contracts?type=${this.type}&page=${this.page}&size=${this.size}`;
-      this.$store.commit("startLoading");
+      const url = `https://resla-app-api-staging.onrender.com/api/v1/contracts?type=${this.type}&state=${this.state.toUpperCase()}&pickup_at=${this.pickup_at}&return_at=${this.return_at}&page=${this.page}&size=${this.size}`;
+      
       axios
         .get(url)
         .then((response) => {
@@ -75,50 +84,46 @@ export default {
               return contract.state == this.state.toUpperCase();
             })
           ) {
-            this.$router.push("/error");
+            this.$router.push("*");
           }
           this.$store.commit("stopLoading");
         })
         .catch((error) => {
           console.log(error);
-          this.$router.push("/error");
           this.$store.commit("stopLoading");
+          this.$router.push("*");
         });
     },
     triggerPrint() {
-      // print method can be refactor if needed
-      const content = document.getElementById(
-        "collision-protection-html"
-      ).innerHTML;
+      const content = document.getElementById("collision-protection-html").innerHTML;
       const printWindow = window.open("");
 
       printWindow.document.write(`
-    <html>
-      <head>
-        <title>Collision Protection | Resla</title>
-        <style>
-        body {
-            font-family: Arial, sans-serif;
-          }
-          #collision-protection-html {
-            margin: 20px;
-            
-          }
-           h6 {
-            font-size: 2rem;
-            margin-top:24px;
-            margin-bottom:12px; 
-          }
-          p{
-           font-size:1rem;
-          }
-        </style>
-      </head>
-      <body>
-        ${content}
-      </body>
-    </html>
-  `);
+        <html>
+          <head>
+            <title>Collision Protection | Resla</title>
+            <style>
+            body {
+                font-family: Arial, sans-serif;
+              }
+              #collision-protection-html {
+                margin: 20px;
+              }
+               h6 {
+                font-size: 2rem;
+                margin-top:24px;
+                margin-bottom:12px; 
+              }
+              p {
+               font-size:1rem;
+              }
+            </style>
+          </head>
+          <body>
+            ${content}
+          </body>
+        </html>
+      `);
 
       printWindow.print();
     },
@@ -131,17 +136,10 @@ export default {
       });
     },
     outputHtml: function () {
-      const price = this.$route.query.price ? this.$route.query.price : "";
-      // Replace the ${price} placeholders with the actual price value
-      let htmlString = this.getContract.html.replace(/\$\{price\}/g, price);
-      // Remove numbers and dots from the start of headings
-      // htmlString = htmlString.replace(
-      //   /<(h[1-6])[^>]*>(\d+\.\s*)+(.*?)<\/\1>/g,
-      //   (match, p1, p2, p3) => {
-      //     return `<${p1}>${p3}</${p1}>`;
-      //   }
-      // );
-      return htmlString;
+      //dont need to swap price now on new endpoint
+      // const price = this.$route.query.price ? this.$route.query.price : "";
+      // let htmlString = this.getContract.html.replace(/\$\{price\}/g, price);
+      return this.getContract.html;
     },
   },
 };

@@ -5,7 +5,7 @@
       </LoadingAnimation>
       <template v-if="data">
         <div class="flex flex-col gap-4 md:gap-3">
-          <CtaButton to="/careers" variant="tertiary" leading-icon>
+          <CtaButton to="/careers" variant="tertiary" leading-icon class="w-max">
             Careers
           </CtaButton>
           <!-- Job Title -->
