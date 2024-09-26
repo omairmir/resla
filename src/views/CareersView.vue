@@ -12,7 +12,7 @@
       </h1>
       <!-- Loader -->
       <div v-if="loading" class="flex w-full items-center justify-center h-max">
-        <LoadingAnimation :full-screen="false"></LoadingAnimation>
+        <LoadingAnimation :full-screen="false" type="spin"></LoadingAnimation>
       </div>
       <div v-for="department in filteredDepartments" :key="'department-' + department.id" class="flex flex-col gap-6">
         <!-- Department Name -->
@@ -32,7 +32,7 @@
 import axios from "axios";
 import CareersCard from '@/components/careers/CareersCard.vue';
 import LegalPageCta from "@/components/LegalPageCta.vue";
-import LoadingAnimation from "@/components/LoadingAnimation.vue";
+import LoadingAnimation from "@/components/base/LoadingAnimation.vue";
 
 export default {
   name: "CareersView",

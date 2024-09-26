@@ -108,7 +108,7 @@
           {
             label: '',
             value: 'blue',
-            icon: '<svg width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><path d=&quot;M4 4L12 12M12 4L4 12&quot; stroke=&quot;#636F7E&quot; stroke-          1.5          e-linecap=&quot;round&quot; stroke-l        uot;round&quot; /></svg>',
+            icon: '<svg width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><path d=&quot;M4 4L12 12M12 4L4 12&quot; stroke=&quot;#636F7E&quot; stroke-                     e          ot;round&quot; stroke-l        uot;r         /></svg>',
             },
             { label: 'Green', value: 'green' },
           ]" v-model="selectedOption">
@@ -163,9 +163,12 @@
     <div id="cards" class="mb-16">
       <h2 class="text-3xl font-semibold mb-4">Faq Card</h2>
       <div class="flex flex-col">
-        <FaqCard question="I auto insurance required to rent with Resla?" answer="I auto insurance required to rent with Resla?"/>
-        <FaqCard question="I auto insurance required to rent with Resla?" answer="Answer lorem ipsum dolor sit amit Answer lorem ipsum dolor sit amit" open/>
-        <FaqCard question="I auto insurance required to rent with Resla?" answer="I auto insurance required to rent with Resla?" route="#"/>
+        <FaqCard question="I auto insurance required to rent with Resla?"
+          answer="I auto insurance required to rent with Resla?" />
+        <FaqCard question="I auto insurance required to rent with Resla?"
+          answer="Answer lorem ipsum dolor sit amit Answer lorem ipsum dolor sit amit" open />
+        <FaqCard question="I auto insurance required to rent with Resla?"
+          answer="I auto insurance required to rent with Resla?" route="#" />
       </div>
     </div>
 
@@ -183,8 +186,7 @@
       <h2 class="text-3xl font-semibold mb-4">Loading Animations</h2>
       <div class="flex items-center gap-6">
         <LoadingAnimation :full-screen="false" type="spin"></LoadingAnimation>
-        <LoadingAnimation :full-screen="false"></LoadingAnimation>
-        <LoadingAnimation :full-screen="false" type="tire"></LoadingAnimation>
+        <LoadingAnimation :full-screen="false" type="logo"></LoadingAnimation>
       </div>
     </div>
 
@@ -194,15 +196,43 @@
       <div class="flex items-center gap-10">
         <ModelLink :imgSrc="'model-3-front.png'" :name="'Model 3'" :url="'#'" />
         <ModelCard class="max-w-xl" :model-detail="{
-                    name: 'Model 3',
-                    imageUrl:'model-3.png',
-                    rent: '69',
-                    range: '272',
-                    zeroToSixty: '5.1',
-                    topSpeed: '162', 
-                    dualAWD: true, 
-                    colors: ['paint-red','paint-pearl', 'paint-blue', 'paint-black','paint-silver']
-                }"></ModelCard>
+          name: 'Model 3',
+          imageUrl: 'model-3.png',
+          rent: '69',
+          range: '272',
+          zeroToSixty: '5.1',
+          topSpeed: '162',
+          dualAWD: true,
+          colors: ['paint-red', 'paint-pearl', 'paint-blue', 'paint-black', 'paint-silver']
+        }"></ModelCard>
+      </div>
+    </div>
+
+    <!-- Skelton Loader -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-semibold mb-4">Skeleton Loader</h2>
+      <h3 class="text-xl font-semibold">Animation Fade</h3>
+      <div class="flex w-full gap-2 py-10">
+        <SkeletonLoader height="400px" width="100%" animation="fade"></SkeletonLoader>
+        <div class="flex w-full flex-col gap-2">
+          <SkeletonLoader height="100%" width="100%" animation="fade" rounded></SkeletonLoader>
+          <SkeletonLoader height="100%" width="100%" animation="fade" rounded radius="16px"></SkeletonLoader>
+        </div>
+      </div>
+      <h3 class="text-xl font-semibold">Animation Wave</h3>
+      <div class="flex w-full gap-2 py-10">
+        <SkeletonLoader height="400px" width="100%"></SkeletonLoader>
+        <div class="flex w-full flex-col gap-2">
+          <SkeletonLoader height="100%" width="100%"></SkeletonLoader>
+          <SkeletonLoader height="100%" width="100%"></SkeletonLoader>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2 py-4 w-[80%]">
+        <SkeletonLoader rounded type="circle"></SkeletonLoader>
+        <SkeletonLoader width="100%" height="20px" rounded></SkeletonLoader>
+        <SkeletonLoader width="80%" height="20px" rounded></SkeletonLoader>
+        <SkeletonLoader width="60%" height="20px" rounded></SkeletonLoader>
+        <SkeletonLoader width="55%" height="20px" rounded radius="20px"></SkeletonLoader>
       </div>
     </div>
   </div>
@@ -218,11 +248,11 @@ import BadgeButton from "@/components/base/Badge.vue";
 import DropdownMenu from "@/components/base/DropdownMenu.vue";
 import LocationCard from "@/components/base/LocationCard.vue";
 import ReviewCard from "@/components/base/ReviewCard.vue";
-import LoadingAnimation from "@/components/LoadingAnimation.vue";
+import LoadingAnimation from "@/components/base/LoadingAnimation.vue";
 import FaqCard from "@/components/base/FaqCard.vue";
 import ModelLink from "@/components/base/ModelLink.vue";
 import ModelCard from "@/components/base/ModelCard.vue";
-
+import SkeletonLoader from "@/components/base/SkeletonLoader.vue";
 export default {
   components: {
     ButtonComponent,
@@ -237,7 +267,8 @@ export default {
     LoadingAnimation,
     FaqCard,
     ModelLink,
-    ModelCard
+    ModelCard,
+    SkeletonLoader
   },
   data() {
     return {

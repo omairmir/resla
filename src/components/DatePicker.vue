@@ -3,25 +3,7 @@
     class="relative"
     ref="pickerContainer"
   >
-    <div v-if="!hideInput" :class="mergedInputClass">
-      <div class="flex flex-col w-full">
-        <label
-          v-if="label"
-          :for="`datepicker-input-${this.id}`"
-          class="hidden lg:block text-resla-ebony-50 text-xs font-normal font-urbanist"
-          >{{ label }}</label
-        >
-        <input
-          :id="`datepicker-input-${this.id}`"
-          type="text"
-          v-model="formattedDate"
-          class="w-full bg-transparent text-ebony-10 text-base border-0 p-0 focus:ring-0 font-urbanist"
-          :placeholder="placeHolder"
-          @focus="handleFocus"
-        />
-      </div>
-      <CalendarIcon class="size-5" />
-    </div>
+    <TextInput v-if="!hideInput"  :id="`datepicker-input-${this.id}`" :placeholder="placeHolder" :label="label ? label : ''" v-model="formattedDate" icon @focus="handleFocus"></TextInput>
     <div v-show="isOpen" :class="mergedPickerClass">
       <div
       :id="`datepicker-${this.id}`"
@@ -64,19 +46,18 @@
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
 <script>
-import CalendarIcon from "@/components/icons/CalendarIcon.vue";
 import { Datepicker } from "flowbite";
 import { twMerge } from "tailwind-merge";
+import TextInput from "@/components/base/TextInput.vue";
 
 export default {
   name: "DatePicker",
   components: {
-    CalendarIcon,
+    TextInput
   },
   props: {
     id: {

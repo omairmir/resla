@@ -1,7 +1,7 @@
 <template>
   <div class="border-x border-primary-700">
     <div class="py-20 lg:px-0 px-6 max-w-content w-full mx-auto flex flex-col gap-y-6">
-      <LoadingAnimation v-if="loading" :full-screen="false" class="flex items-center justify-center w-full min-h-96">
+      <LoadingAnimation v-if="loading" :full-screen="false" type="spin" class="flex items-center justify-center w-full min-h-96">
       </LoadingAnimation>
       <template v-if="data">
         <div class="flex flex-col gap-4 md:gap-3">
@@ -71,7 +71,7 @@ import UserIcon from "@/components/icons/UserIcon.vue";
 import LocationIcon from "@/components/icons/PinIcon.vue";
 import TimeIcon from "@/components/icons/TimeIcon.vue";
 import LegalPageCta from "@/components/LegalPageCta.vue";
-import LoadingAnimation from "@/components/LoadingAnimation.vue";
+import LoadingAnimation from "@/components/base/LoadingAnimation.vue";
 import CtaButton from "@/components/base/CtaButton.vue";
 
 export default {

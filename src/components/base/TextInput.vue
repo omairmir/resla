@@ -128,7 +128,7 @@ export default {
       const baseClasses =
         "border-0 focus:ring-0 p-0 m-0 w-full bg-inherit text-primary-100 ";
 
-      return twMerge(baseClasses, this.isDisabled ? "cursor-not-allowed" : "");
+      return twMerge(baseClasses, this.isDisabled ? "cursor-not-allowed" : "",this.size === 'large' ? 'mt-2.5' : '');
     },
     labelClass() {
       const baseClasses =
@@ -147,17 +147,17 @@ export default {
     },
   },
   methods: {
-    handleFocus() {
+    handleFocus(event) {
       this.isFocused = true;
-      this.$emit('focus');
+      this.$emit('focus',event);
     },
-    handleBlur() {
+    handleBlur(event) {
       this.isFocused = false;
-      this.$emit('blur');
+      this.$emit('blur',event);
     },
     handleInput(event) {
       const value = event.target.value;
-      this.$emit('input', value); // Emit input change to the parent
+      this.$emit('input',event, value);
       this.formattedValue = value;
     },
   },
