@@ -1,21 +1,15 @@
 <template>
     <div class="relative">
-        <div :class="mergedInputClass">
-            <div class="flex flex-col w-full">
-                <label v-if="label" :for="id"
-                    class="hidden lg:block text-resla-ebony-50 text-xs font-normal font-urbanist">{{ label
-                    }}</label>
-                <input :id="id" type="text" v-model="searchQuery" @input.stop="handleInput" @focus.stop="handleInput"
-                    @blur.stop="handleBlur" @keydown.enter.prevent="selectFirstOption" autocomplete="off"
-                    class="w-full bg-transparent text-ebony-10 text-base border-0 p-0 focus:ring-0 font-urbanist"
-                    :placeholder="placeHolder" />
-            </div>
+        <TextInput :id="id" :class="inputClass" :size="size" :required="required" :placeholder="placeHolder" :label="label ? label : ''" v-model="searchQuery"
+            @input="handleInput" @focus="handleInput" @blur="handleBlur" icon @keydown="selectFirstOption"
+            >
+            <template #icon>
             <div v-if="$slots.icon">
                 <slot name="icon"></slot>
             </div>
-            <PinIcon v-else class="size-5" />
-        </div>
-
+            <PinIcon v-else />
+            </template>
+        </TextInput>
         <ul v-if="filteredOptions.length > 0 && isOpen" :class="mergeddropdownClass" class="autocomplete-blur-dropdown">
             <li v-for="option in filteredOptions" :key="option.id"
                 class="flex items-center hover:bg-primary-900 gap-4 py-3 px-3 font-urbanist text-base text-primary-300 cursor-pointer"
@@ -30,12 +24,15 @@
 </template>
 
 <script>
-import PinIcon from "@/components/icons/PinIcon.vue";
 import { twMerge } from "tailwind-merge";
+import PinIcon from "@/components/icons/PinIcon.vue";
+import TextInput from "@/components/base/TextInput.vue";
+
 export default {
     name: "AutoComplete",
     components: {
         PinIcon,
+        TextInput
     },
     props: {
         id: {
@@ -72,6 +69,17 @@ export default {
             type: Boolean,
             default: false,
         },
+        size: {
+            type: String,
+            default: 'large',
+            validator(value) {
+                return ["large", "small"].includes(value);
+            },
+        },
+        required: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
@@ -82,13 +90,6 @@ export default {
         };
     },
     computed: {
-        mergedInputClass() {
-            return twMerge(
-                "flex items-center justify-center py-3 lg:min-h-auto min-h-16  px-4 border-resla-ebony-70 gap-1 bg-resla-ebony-90 w-full",
-                this.isOpen ? "!bg-resla-ebony-80" : "",
-                this.inputClass
-            );
-        },
         mergeddropdownClass() {
             return twMerge(
                 "flex flex-col gap-1 p-1 rounded-xl absolute  w-full border border-primary-700 bg-primary-1000 max-h-60 z-50 overflow-y-auto",

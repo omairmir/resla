@@ -5,13 +5,13 @@
             Rent a Tesla Guaranteed.
         </h1>
         <div class="flex w-full flex-col lg:flex-row items-center justify-center border border-resla-ebony-70 rounded-lg bg-resla-ebony-90">
-            <AutoComplete class="w-full" :input-class="'border-b lg:border-b-0 lg:border-r border-resla-ebony-70'" id="location-se" label="location"
+            <AutoComplete class="w-full" :input-class="'border-b lg:border-b-0 lg:border-r border-resla-ebony-70 rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none'" id="location-se" label="location"
                 :value="value" :options="options" valueKey="city" />
             <DatePicker :id="'pickup'" label="Pickup Date" class="w-full" :value="pickupDate" :inputClass="'border-b lg:border-b-0 lg:border-r border-resla-ebony-70'"
                 placeHolder="Dates" :picker-class="'rounded-lg overflow-hidden'" @input="handlePickupDate"/>
             <DatePicker :id="'return'" label="Return Date" class="w-full" :value="returnDate" :min-date="minReturnDate" :inputClass="'border-b lg:border-b-0 lg:border-r border-resla-ebony-70'"
                 placeHolder="Dates" :picker-class="'rounded-lg overflow-hidden'"  @input="handleReturnDate"/>
-            <div class=" py-2.5 lg:py-0 px-2.5 bg-resla-ebony-90 w-full lg:w-max">
+            <div class=" py-2.5 lg:py-0 px-2.5 bg-resla-ebony-90 w-full lg:w-max rounded-b-lg lg:rounded-none">
                 <CtaButton trailing-icon size="small" class="hidden lg:block"></CtaButton>
                 <CtaButton trailing-icon size="small" class="block lg:hidden w-full">View
                     Vehicles</CtaButton>

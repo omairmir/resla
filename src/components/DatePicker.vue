@@ -1,9 +1,8 @@
 <template>
   <div
     class="relative"
-    ref="pickerContainer"
   >
-    <TextInput v-if="!hideInput"  :id="`datepicker-input-${this.id}`" :placeholder="placeHolder" :label="label ? label : ''" v-model="formattedDate" icon @focus="handleFocus"></TextInput>
+    <TextInput v-if="!hideInput"  :id="`datepicker-input-${this.id}`" :class="inputClass" :size="size" :placeholder="placeHolder" :label="label ? label : ''" v-model="formattedDate" icon @focus="handleFocus"></TextInput>
     <div v-show="isOpen" :class="mergedPickerClass">
       <div
       :id="`datepicker-${this.id}`"
@@ -99,7 +98,18 @@ export default {
     showTimePicker:{
       type: Boolean,
       default: true,
-    }
+    },
+    size:{
+            type:String,
+            default:'large',
+            validator(value) {
+                return ["large", "small"].includes(value);
+            },
+    },
+    required: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -111,13 +121,7 @@ export default {
     };
   },
   computed: {
-    mergedInputClass() {
-      return twMerge(
-        "flex items-center justify-center py-3 px-4 lg:min-h-auto min-h-16 border-resla-ebony-70 gap-1 bg-resla-ebony-90 w-full",
-        this.isOpen ? "!bg-resla-ebony-80" : "",
-        this.inputClass
-      );
-    },
+
     mergedPickerClass() {
       return twMerge("absolute bg-white rounded-lg z-40", this.pickerClass);
     },

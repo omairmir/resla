@@ -396,18 +396,6 @@ const routes = [
       import(/* webpackChunkName: "contact" */ "../views/ContactView.vue"),
   },
   {
-    path: "/story",
-    name: "Story",
-    meta: {
-      title: "Base Component",
-    },
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "contact" */ "../views/ComponentStory.vue"),
-  },
-  {
     path: "/blog",
     name: "blog",
     meta: {
@@ -519,6 +507,21 @@ const routes = [
       ),
   },
 ];
+
+if (process.env.NODE_ENV === 'development') {
+  routes.push({
+    path: "/story",
+    name: "Story",
+    meta: {
+      title: "Base Component",
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "contact" */ "../views/ComponentStory.vue"),
+  });
+}
 
 const router = new VueRouter({
   mode: "history",

@@ -74,6 +74,20 @@
       </div>
     </div>
 
+
+     <!-- Date Picker & Range Picker -->
+     <div class="mb-16">
+      <h2 class="text-3xl font-semibold mb-4">Date Picker & Date Range Picker</h2>
+      <div class="flex items-center gap-10">
+        <DatePicker :id="'story-date'" label="Date" 
+                placeHolder="Dates" />
+        <RangePicker :id="'story-range'"  label="Range Date" 
+                placeHolder="Dates" />
+      </div>
+    </div>
+
+    
+
     <!-- Chips Section -->
     <div id="chips" class="mb-16">
       <h2 class="text-3xl font-semibold mb-4">Chips</h2>
@@ -144,6 +158,20 @@
       </div>
     </div>
 
+    <!--autocomplete -->
+    <div  class="mb-16">
+      <h2 class="text-3xl font-semibold mb-4">AutoComplete Dropdown</h2>
+      <div class="flex items-center gap-10">
+        <AutoComplete  id="story-se" label="options"
+        :value="'3'" :options="[
+          { id: '1', label: 'Option 1' },
+          { id: '2', label: 'Option 2' },
+          { id: '3', label: 'Option 3' },
+          { id: '4', label: 'Option 4' },
+        ]" valueKey="id" />
+      </div>
+    </div>
+
     <!-- Location Card -->
     <div id="cards" class="mb-16">
       <h2 class="text-3xl font-semibold mb-4">Loaction Card</h2>
@@ -160,7 +188,7 @@
     </div>
 
     <!-- Faq Card -->
-    <div id="cards" class="mb-16">
+    <div  class="mb-16">
       <h2 class="text-3xl font-semibold mb-4">Faq Card</h2>
       <div class="flex flex-col">
         <FaqCard question="I auto insurance required to rent with Resla?"
@@ -173,7 +201,7 @@
     </div>
 
     <!-- Review Card -->
-    <div id="cards" class="mb-16">
+    <div  class="mb-16">
       <h2 class="text-3xl font-semibold mb-4">Review Card</h2>
       <div class="flex items-center gap-4">
         <ReviewCard></ReviewCard>
@@ -181,17 +209,10 @@
       </div>
     </div>
 
-    <!-- Loading Animations Section -->
-    <div id="loading" class="mb-16">
-      <h2 class="text-3xl font-semibold mb-4">Loading Animations</h2>
-      <div class="flex items-center gap-6">
-        <LoadingAnimation :full-screen="false" type="spin"></LoadingAnimation>
-        <LoadingAnimation :full-screen="false" type="logo"></LoadingAnimation>
-      </div>
-    </div>
+    
 
     <!-- Model Link -->
-    <div id="cards" class="mb-16">
+    <div class="mb-16">
       <h2 class="text-3xl font-semibold mb-4">Model Link & Card</h2>
       <div class="flex items-center gap-10">
         <ModelLink :imgSrc="'model-3-front.png'" :name="'Model 3'" :url="'#'" />
@@ -208,8 +229,17 @@
       </div>
     </div>
 
+    <!-- Loading Animations Section -->
+    <div id="loading" class="mb-16">
+      <h2 class="text-3xl font-semibold mb-4">Loading Animations</h2>
+      <div class="flex items-center gap-6">
+        <LoadingAnimation :full-screen="false" type="spin"></LoadingAnimation>
+        <LoadingAnimation :full-screen="false" type="logo"></LoadingAnimation>
+      </div>
+    </div>
+
     <!-- Skelton Loader -->
-    <div class="mb-16">
+    <div id="skeleton" class="mb-16">
       <h2 class="text-3xl font-semibold mb-4">Skeleton Loader</h2>
       <h3 class="text-xl font-semibold">Animation Fade</h3>
       <div class="flex w-full gap-2 py-10">
@@ -253,6 +283,10 @@ import FaqCard from "@/components/base/FaqCard.vue";
 import ModelLink from "@/components/base/ModelLink.vue";
 import ModelCard from "@/components/base/ModelCard.vue";
 import SkeletonLoader from "@/components/base/SkeletonLoader.vue";
+import DatePicker from "@/components/DatePicker.vue";
+import RangePicker from "@/components/RangePicker.vue";
+import AutoComplete from "@/components/AutoComplete.vue";
+
 export default {
   components: {
     ButtonComponent,
@@ -268,7 +302,10 @@ export default {
     FaqCard,
     ModelLink,
     ModelCard,
-    SkeletonLoader
+    SkeletonLoader,
+    DatePicker,
+    RangePicker,
+    AutoComplete
   },
   data() {
     return {

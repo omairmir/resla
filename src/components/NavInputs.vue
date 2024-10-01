@@ -1,15 +1,15 @@
 <template>
     <div
-        class="relative flex items-center max-w-full lg:max-w-[25rem] bg-resla-ebony-90 border border-resla-ebony-70 rounded-lg">
+        class="relative flex items-center max-w-full lg:max-w-[28rem] bg-resla-ebony-90 border border-resla-ebony-70 rounded-lg">
         <!--location dropdown-->
-        <AutoComplete class="!static w-full" :input-class="'!min-h-max py-2 border-r border-resla-ebony-70'"
+        <AutoComplete class="!static w-full" size="small" :input-class="'border-r border-resla-ebony-70 rounded-l-lg '"
             :dropdown-class="'top-14 lg:top-[70px]'" id="location" :value="defaultLocation" :options="options" is-nav
             valueKey="city" />
         <!--date picker-->
-        <RangePicker :id="datePickerID" class="!static w-full" isNav :is-scrolled-past="isScrolledPast" :inputClass="'py-2 lg:border-r border-resla-ebony-70'"
+        <RangePicker :id="datePickerID" class="!static w-full" isNav size="small" :is-scrolled-past="isScrolledPast" :inputClass="'border-r border-resla-ebony-70'"
             :picker-class="'rounded-lg overflow-hidden top-14 lg:top-[70px]'" placeHolder="Dates" />
         
-        <CtaButton variant="tertiary" trailing-icon class="p-2"/>
+        <CtaButton variant="secondary" trailing-icon size="small" class="border-0 !p-2 !h-full !rounded-l-none"/>
     </div>
 </template>
 

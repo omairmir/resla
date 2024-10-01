@@ -1,21 +1,12 @@
 <template>
-  <div class="relative w-full">
-    <div :class="mergedInputClass">
-      <div class="flex flex-col w-full">
-        <label v-if="label" :for="`datepicker-input-${this.id}`"
-          class="hidden lg:block text-resla-ebony-50 text-xs leading-5 font-normal font-urbanist">{{ label }}</label>
-        <input :id="`datepicker-input-${this.id}`" type="text" v-model="formattedDate"
-          class="w-full bg-transparent text-ebony-10 text-base border-0 p-0 focus:ring-0 font-urbanist"
-          :placeholder="placeHolder" @focus="handleFocus" />
-      </div>
-      <CalendarIcon class="size-5" />
-    </div>
+  <div class="relative">
+    <TextInput :id="`datepicker-input-${this.id}`" :class="inputClass" :size="size" :placeholder="placeHolder" :label="label ? label : ''" v-model="formattedDate" icon @focus="handleFocus"></TextInput>
     <div v-show="isOpen" :class="mergedPickerClass">
-      <DatePicker :id="`start-${this.id}`" ref="startDate" :hide-input="true" class="!static w-full" :value="startDate"
+      <DatePicker :id="`${this.id}-start-date`" ref="startDate" hide-input class="!static w-full" :value="startDate"
         title="Pickup Date" :picker-class="'!relative border-r border-primary-700'" @input="handleStartDate">
       </DatePicker>
        
-      <DatePicker :id="`end-${this.id}`" ref="endDate" :hide-input="true" class="!static w-full" :value="endDate"
+      <DatePicker :id="`${this.id}-end-date`" ref="endDate" hide-input class="!static w-full" :value="endDate"
         :min-date="minReturnDate" title="Return Date" :picker-class="'!relative'" @input="handleEndDate">
       </DatePicker>
     </div>
@@ -24,9 +15,9 @@
 
 <script>
 const BREAKPOINT = 1024;
-import CalendarIcon from "@/components/icons/CalendarIcon.vue";
-import DatePicker from "@/components/DatePicker.vue";
 import { twMerge } from "tailwind-merge";
+import DatePicker from "@/components/DatePicker.vue";
+import TextInput from "@/components/base/TextInput.vue";
 const formatOptions = {
   month: "short",
   day: "numeric",
@@ -34,8 +25,8 @@ const formatOptions = {
 export default {
   name: "RangePicker",
   components: {
-    CalendarIcon,
     DatePicker,
+    TextInput
   },
   props: {
     id: {
@@ -77,6 +68,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    size:{
+            type:String,
+            default:'large',
+            validator(value) {
+                return ["large", "small"].includes(value);
+            },
+    },
+    required: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -91,13 +93,6 @@ export default {
     };
   },
   computed: {
-    mergedInputClass() {
-      return twMerge(
-        "flex items-center justify-center py-3 px-4 border-resla-ebony-70 gap-1 bg-resla-ebony-90 w-full",
-        this.isOpen ? "!bg-resla-ebony-80" : "",
-        this.inputClass
-      );
-    },
     mergedPickerClass() {
       return twMerge(
         "absolute left-1/2 transform -translate-x-1/2 items-center flex flex-row justify-center lg:justify-between lg:min-w-[39rem] z-50",

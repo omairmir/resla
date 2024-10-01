@@ -14,10 +14,12 @@
       :placeholder="!label ? placeholder : ''"
       :disabled="isDisabled"
       :autocomplete="autocomplete ? 'on' : 'off'"
+      :required="required"
       v-model="formattedValue"
       @focus="handleFocus"
       @blur="handleBlur"
       @input="handleInput"
+      @keydown.enter.prevent="handleKeydown"
     />
     <!-- Render forward icon if trailingIcon prop is passed -->
     <div v-if="icon" class="block size-5">
@@ -68,6 +70,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    required: {
+      type: Boolean,
+      default: false,
+    },
     size: {
       type: String,
       default: "large", // large, small
@@ -106,7 +112,7 @@ export default {
   computed: {
     containerClass() {
       const baseClasses =
-        "relative min-w-[200px] font-normal font-urbanist text-base leading-[25.6px] flex items-center gap-1 border-primary-700 bg-primary-900 hover:bg-primary-800 focus-within:bg-primary-800 text-primary-500 hover:text-primary-300 focus-within:text-primary-100";
+        "relative font-normal font-urbanist text-base leading-[25.6px] flex items-center gap-1 border-primary-700 bg-primary-900 hover:bg-primary-800 focus-within:bg-primary-800 text-primary-500 hover:text-primary-300 focus-within:text-primary-100";
       
      const sizeClasses = {
         large: "py-3 px-4 min-h-16",
@@ -157,8 +163,11 @@ export default {
     },
     handleInput(event) {
       const value = event.target.value;
-      this.$emit('input',event, value);
+      this.$emit('input',value);
       this.formattedValue = value;
+    },
+    handleKeydown(event) {
+      this.$emit('keydown', event); 
     },
   },
 };
