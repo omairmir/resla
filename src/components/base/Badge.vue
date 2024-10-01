@@ -16,7 +16,7 @@
       },
       size:{
         type: String,
-        default: 'small',
+        default: 'large',
         validator: (value) => ["small", "large"].includes(value)
       }
     },
