@@ -59,10 +59,25 @@
         type: Boolean,
         default: false
       },
+      selectedFilter: {
+      type: Array,
+      default: () => []
+    }
     },
     computed: {
       filteredVideos() {
-        return this.limited ? this.videosList.slice(0, 6) : this.videosList;
+        let filteredBlogs = this.selectedFilter.length === 0
+          ? this.iframeList
+          : this.iframeList.filter(blog =>
+              this.selectedFilter.some(selected =>
+                  blog.tags.some(tag => tag.name === selected)
+              )
+          );
+
+      if (this.limited) {
+        return filteredBlogs.slice(0, 9);
+      }
+      return filteredBlogs;
       }
     }
   }

@@ -13,6 +13,10 @@
       limited: {
         type: Boolean,
         default: false
+      },
+      selectedFilter: {
+      type: Array,
+      default: () => []
       }
     },
     components:{
@@ -97,7 +101,18 @@
     },
     computed:{
       filteredFaqs() {
-        return this.limited ? this.faqs.slice(0, 14) : this.faqs;
+        let filteredBlogs = this.selectedFilter.length === 0
+          ? this.faqs
+          : this.faqs.filter(blog =>
+              this.selectedFilter.some(selected =>
+                  blog.tags.some(tag => tag.name === selected)
+              )
+          );
+
+      if (this.limited) {
+        return filteredBlogs.slice(0, 14);
+      }
+      return filteredBlogs;
       }
     }
   }
