@@ -1,11 +1,17 @@
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-6">
+   <div>
+    <div v-if="filteredBlogs.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-6">
       <router-link
-          v-for="(blog, index) in filteredBlogs" :key="index"
-          :to="`/blog/${blog.slug}`"
+        v-for="(blog, index) in filteredBlogs" :key="index"
+        :to="`/blog/${blog.slug}`"
       >
         <BlogCard :title="blog.title" :imageUrl="blog.featured_image" :tags="blog.tags" :date="blog.published"/>
       </router-link>
+    </div>
+
+    <div v-else class="flex items-center justify-center h-[400px]">
+      No Blog Post Found
+    </div>
   </div>
 </template>
 

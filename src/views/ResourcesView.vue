@@ -7,7 +7,7 @@
           <div class="text-heading font-medium tracking-negative-3 text-left">
             Resources
           </div>
-          <ResourcesFilter @onChange="handleFilterSelect" />
+          <ResourcesFilter @onChange="(filter) => selectedFilter = filter" />
         </div>
         <!--get featured post from butter cms-->
         <div
@@ -86,13 +86,7 @@ export default {
   },
   methods: {
     handleFilterSelect(filter) {
-      const filterIndex = this.selectedFilter.findIndex(selected => selected.toLowerCase() === filter.toLowerCase());
-
-      if (filterIndex !== -1) {
-        this.selectedFilter.splice(filterIndex, 1);
-      } else {
-        this.selectedFilter.push(filter);
-      }
+        this.selectedFilter = filter
     },
   }
 

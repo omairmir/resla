@@ -1,7 +1,12 @@
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10 lg:gap-x-6">
-    <TutorialCard v-for="(blog, index) in filteredVideos" :key="index" :title="blog.title" :videoUrl="blog.src"
-      :tags="blog.tags" :thumbnail="blog.imgURL" />
+  <div>
+    <div v-if="filteredVideos.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10 lg:gap-x-6">
+      <TutorialCard v-for="(blog, index) in filteredVideos" :key="index" :title="blog.title" :videoUrl="blog.src"
+        :tags="blog.tags" :thumbnail="blog.imgURL" />
+    </div>
+    <div v-else class="flex items-center justify-center h-[400px]">
+      No Video Tutorial Found
+    </div>
   </div>
 </template>
 

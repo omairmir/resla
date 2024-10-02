@@ -7,10 +7,10 @@
           <div class="text-heading font-medium tracking-negative-3 text-left">
             FAQs
           </div>
-          <FilterComponent />
+          <ResourcesFilter @onChange="(filter) => selectedFilter = filter" />
         </div>
         <div class="col-md-10 offset-md-1 mt-3 mb-5">
-          <FaqsList />
+          <FaqsList :selectedFilter="selectedFilter"/>
         </div>
       </div>
 
@@ -21,16 +21,23 @@
 
 <script>
 // @ is an alias to /src
-import FilterComponent from "@/components/resources/ResourcesFilter";
+import ResourcesFilter from "@/components/resources/ResourcesFilter";
 import FaqsList from "@/components/resources/FaqsList";
 import LegalPageCta from "@/components/LegalPageCta";
 
 export default {
   name: "FaqsView",
   components: {
+    ResourcesFilter,
+    FaqsList
     FilterComponent,
     FaqsList,
     LegalPageCta
   },
+  data: function() {
+        return {
+          selectedFilter: []
+        }
+      },
 };
 </script>
