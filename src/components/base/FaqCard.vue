@@ -12,7 +12,7 @@
         <div v-else @click="toggleAccordion" :class="buttonClass">
             {{ question }}
             <div class="flex gap-6">
-                <div class="flex gap-2">
+                <div class="hidden md:flex gap-2">
                     <Badge v-for="(tag, index) in tags" :key="index">{{ tag.name }}</Badge>
                 </div>
                 <ChevronLeft class="rotate-[270deg] size-6 transform transition-transform duration-200 text-primary-500"

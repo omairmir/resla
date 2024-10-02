@@ -1,8 +1,6 @@
 <template>
-    <div class="flex flex-row gap-6 flex-wrap justify-between">
-      <div class="flex flex-wrap" v-for="(blog, index) in filteredVideos" :key="index">
-        <TutorialCard :title="blog.title" :videoUrl="blog.src" :tags="blog.tags" :thumbnail="blog.imgURL"/>
-      </div>
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10 lg:gap-x-6">
+        <TutorialCard v-for="(blog, index) in filteredVideos" :key="index" :title="blog.title" :videoUrl="blog.src" :tags="blog.tags" :thumbnail="blog.imgURL"/>
     </div>
   </template>
   

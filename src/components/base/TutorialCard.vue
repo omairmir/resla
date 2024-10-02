@@ -1,6 +1,6 @@
 <template>
-    <div class="video-card-wrapper flex flex-col gap-6 w-full max-w-[625px]">
-      <div class="iframe-container flex flex-col rounded-xl h-[400px] relative">
+    <div class="video-card-wrapper flex flex-col gap-6 w-full">
+      <div class="iframe-container flex flex-col rounded-xl h-[280px] md:h-[400px] relative">
         <img
             :src="getThumbnailSrc"
             alt="Video Thumbnail"
