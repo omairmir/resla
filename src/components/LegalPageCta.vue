@@ -6,8 +6,8 @@
       <br />
       {{ subHeading }}
     </h2>
-    <CtaButton>
-      Book Now
+    <CtaButton :to="to ? to : undefined">
+      {{ btnLabel }}
     </CtaButton>
   </div>
 </template>
@@ -28,7 +28,14 @@ export default {
     subHeading: {
       type: String,
       default: 'Contact Us.'
-    }
+    },
+    btnLabel:{
+      type: String,
+      default: 'Book Now'
+    },
+    to: {
+      type: String,
+    },
   }
 };
 </script>
