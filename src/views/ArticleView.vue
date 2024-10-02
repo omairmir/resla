@@ -1,5 +1,6 @@
 <template>
-    <div class="border-x border-primary-700 flex flex-col w-full p-6 lg:p-10 justify-center items-center mx-auto gap-20">
+  <div class="border-x border-primary-700 ">
+    <div class="flex flex-col w-full p-6 lg:p-10 justify-center items-center mx-auto gap-20">
       <div class="flex flex-col max-w-content gap-6">
         <div class="header-detail flex flex-col gap-6">
           <div class="post-title flex flex-col gap-3 justify-start">
@@ -23,14 +24,16 @@
               </div>
             </div>
           </div>
-            <div class="flex gap-2">
-              <Badge v-for="(tag, index) in article.tags" :key="index">{{ tag.name }}</Badge>
-            </div>
-            <img :src="article.featured_image" class="h-[340px] rounded-xl object-cover w-full"/>
+          <div class="flex gap-2">
+            <Badge v-for="(tag, index) in article.tags" :key="index">{{ tag.name }}</Badge>
+          </div>
+          <img :src="article.featured_image" class="h-[340px] rounded-xl object-cover w-full"/>
         </div>
         <div v-html="article.body" id="content-detail-html"/>
       </div>
     </div>
+    <LegalPageCta heading="Ready to get" sub-heading="on the road?" btn-label="Book Now" to="/reservations"></LegalPageCta>
+  </div>
   </template>
   
   <script>
@@ -39,6 +42,7 @@
   import CalenderIcon from '@/components/icons/CalendarIcon';
   import Badge from "@/components/base/Badge.vue";
   import Butter from "buttercms";
+  import LegalPageCta from "@/components/LegalPageCta";
   
   export default {
     name: "BlogPostDetail",
@@ -46,7 +50,8 @@
       CtaButton,
       CalenderIcon,
       LocationIcon,
-      Badge
+      Badge,
+      LegalPageCta
     },
     data() {
       return {

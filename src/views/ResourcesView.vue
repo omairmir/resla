@@ -1,6 +1,5 @@
 <template>
   <div class="border-x border-primary-700 ">
-    {{ selectedFilter }}
 
     <div class="flex flex-col gap-20 p-6 lg:p-10 w-full  justify-center items-center">
       <div class="flex flex-col gap-8 w-full">
