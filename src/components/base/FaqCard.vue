@@ -2,8 +2,8 @@
     <div class="accordion">
         <!-- Question Section -->
         <div v-if="url || route" @click.stop>
-            <component :is="url ? 'a' : 'router-link'" :href="url ? url : undefined"
-            :to="route ? route : undefined" :class="buttonClass">
+            <component :is="url ? 'a' : 'router-link'" :href="url ? url : undefined" :to="route ? route : undefined"
+                :class="buttonClass">
                 {{ question }}
                 <RightArrow class="size-6 text-primary-500" />
             </component>
@@ -11,7 +11,13 @@
 
         <div v-else @click="toggleAccordion" :class="buttonClass">
             {{ question }}
-            <ChevronLeft class="rotate-[270deg] size-6 transform transition-transform duration-200 text-primary-500" :class="{ '!rotate-90': isOpen }"></ChevronLeft>
+            <div class="flex gap-6">
+                <div class="flex gap-2">
+                    <Badge v-for="(tag, index) in tags" :key="index">{{ tag.name }}</Badge>
+                </div>
+                <ChevronLeft class="rotate-[270deg] size-6 transform transition-transform duration-200 text-primary-500"
+                    :class="{ '!rotate-90': isOpen }"></ChevronLeft>
+            </div>
         </div>
 
         <!-- Answer Section with transition -->
@@ -28,11 +34,14 @@
 <script>
 import RightArrow from '@/components/icons/RightArrow.vue'; // Importing the icon component
 import ChevronLeft from '@/components/icons/ChevronLeft.vue';
+import Badge from "@/components/base/Badge";
+
 export default {
     name: 'FaqCard',
     components: {
         RightArrow,
-        ChevronLeft
+        ChevronLeft,
+        Badge
     },
     props: {
         question: {
@@ -54,7 +63,12 @@ export default {
         open: {
             type: Boolean,
             default: false
-        }
+        },
+        tags: {
+            type: Array,
+            default: () => []
+        },
+
     },
     data() {
         return {

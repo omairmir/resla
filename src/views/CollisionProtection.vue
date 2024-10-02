@@ -16,11 +16,11 @@
           <p class="block font-urbanist text-base text-primary-100">
             Last Updated
             {{
-            new Intl.DateTimeFormat("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            }).format(new Date(getContract.updated_at))
+              new Intl.DateTimeFormat("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }).format(new Date(getContract.updated_at))
             }}.
           </p>
         </div>
@@ -74,7 +74,7 @@ export default {
         this.$router.push("*");
       }
       const url = `https://resla-app-api-staging.onrender.com/api/v1/contracts?type=${this.type}&state=${this.state.toUpperCase()}&pickup_at=${this.pickup_at}&return_at=${this.return_at}&page=${this.page}&size=${this.size}`;
-      
+
       axios
         .get(url)
         .then((response) => {
@@ -109,7 +109,7 @@ export default {
               #collision-protection-html {
                 margin: 20px;
               }
-               h6 {
+               h5 {
                 font-size: 2rem;
                 margin-top:24px;
                 margin-bottom:12px; 
@@ -139,7 +139,13 @@ export default {
       //dont need to swap price now on new endpoint
       // const price = this.$route.query.price ? this.$route.query.price : "";
       // let htmlString = this.getContract.html.replace(/\$\{price\}/g, price);
-      return this.getContract.html;
+      let htmlString = this.getContract.html;
+      htmlString = htmlString
+        .replace(/<h2\b[^>]*>(.*?)<\/h2>/, '')   // Remove the first <h2>...</h2>
+        .replace(/<hr\b[^>]*>/, '');
+      htmlString = htmlString.replace(/<h2\b[^>]*>(.*?)<\/h2>/, '');
+
+      return htmlString;
     },
   },
 };
@@ -147,20 +153,83 @@ export default {
 
 <style lang="scss">
 #collision-protection-html {
-  p {
-    @apply font-urbanist font-normal text-base leading-[25.6px] text-primary-300 mb-3;
+
+  h2 {
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    color: #110f0c;
+    margin-top: 32px !important;
+    margin-bottom: 32px !important;
+    letter-spacing: -0.03em;
+    /* font-family: "VisbyCF"  if your website used Visby font */
+  }
+
+  h5 {
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 2rem;
+    color: #110f0c;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    text-decoration: none;
+    letter-spacing: -0.03em;
+    /* font-family: "VisbyCF"  if your website used Visby font */
   }
 
   h6 {
-    @apply text-heading-2 leading-8 font-medium text-primary-100 mb-3 mt-6;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: #110f0c;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    text-decoration: none;
+    letter-spacing: -0.03em;
+    /* font-family: "VisbyCF"  if your website used Visby font */
+  }
+
+  u {
+    display: block;
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: #110f0c;
+    text-decoration: none;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    /* font-family: "VisbyCF"  if your website used Visby font */
+  }
+
+  p {
+    font-family: "Urbanist";
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #2b2825;
+    /*fallback */
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 
   ol {
-    @apply list-decimal list-inside pl-2 font-urbanist font-normal text-base leading-[25.6px] text-primary-300;
+    font-family: "Urbanist";
+    padding-left: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    list-style-type: decimal;
+    list-style-position: inside;
+    color: #2b2825;
   }
 
-  li {
-    @apply mb-2;
+  a {
+    text-decoration: underline;
+    color: #2b2825 !important;
+  }
+
+  hr {
+    width: 100%;
+    border-color: #d6d2cd;
   }
 }
 </style>
