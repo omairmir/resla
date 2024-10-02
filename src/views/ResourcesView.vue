@@ -84,13 +84,6 @@ export default {
       selectedFilter: [],
     }
   },
-  methods: {
-    handleFilterSelect(filter) {
-        this.selectedFilter = filter
-    },
-  }
-
-
 }
 </script>
 
