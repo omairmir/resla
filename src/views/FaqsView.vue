@@ -29,8 +29,6 @@ export default {
   name: "FaqsView",
   components: {
     ResourcesFilter,
-    FaqsList
-    FilterComponent,
     FaqsList,
     LegalPageCta
   },
