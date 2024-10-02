@@ -1,8 +1,8 @@
 <template>
-  <div class="border-x border-primary-700 flex flex-col w-full p-10 justify-center items-center">
-    <div class="flex flex-col gap-20 w-[1278px]">
-      <div class="resources-wrapper flex flex-col gap-8">
-        <div class="resource-filter flex justify-between items-center">
+  <div class="border-x border-primary-700 flex flex-col gap-20 p-6 lg:p-10 w-full  justify-center items-center">
+   
+      <div class="flex flex-col gap-8 w-full">
+        <div class="flex flex-col lg:flex-row gap-6 lg:gap-0 justify-between">
           <div class="text-heading font-medium tracking-negative-3 text-left">
             FAQs
           </div>
@@ -12,7 +12,7 @@
           <FaqsList />
         </div>
       </div>
-    </div>
+
   </div>
 </template>
 

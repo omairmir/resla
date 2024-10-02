@@ -47,7 +47,7 @@ module.exports = {
         'urbanist': ['"Urbanist"'],
       },
       fontSize: {
-        'heading': ['56px', '56px'], // 3.5rem -- same lineheight and fontsize
+        'heading': ['3.5rem', '3.rrem'], // 3.5rem -- same lineheight and fontsize
         'heading-1': '2.5rem',
         'heading-2': '2rem',
       },
