@@ -1,8 +1,14 @@
 <template>
-    <div class="border border-resla-ebony-70 rounded-xl overflow-hidden">
+  <div>
+    <div v-if="filteredFaqs.length > 0" class="border border-resla-ebony-70 rounded-xl overflow-hidden">
       <FaqCard v-for="(faq, index) in filteredFaqs" :key="index" :question="faq.question" :answer="faq.answer" :tags="faq.tags">
       </FaqCard>
     </div>
+    <div v-else class="flex items-center justify-center h-[400px]">
+      No FAQ's Found
+    </div>
+  </div>
+    
   </template>
   
   <script>

@@ -5,10 +5,10 @@
             <div class="text-heading font-medium tracking-negative-3 text-left">
               Video Tutorials
             </div>
-            <FilterComponent />
+            <ResourcesFilter @onChange="(filter) => selectedFilter = filter" />
           </div>
           <div class="col-md-10 offset-md-1 mt-3 mb-5">
-            <VideoTutorials />
+            <VideoTutorials :selectedFilter="selectedFilter"/>
           </div>
         </div>
     </div>
@@ -16,15 +16,20 @@
   
   
   <script>
-  import FilterComponent from "@/components/resources/ResourcesFilter";
+  import ResourcesFilter from "@/components/resources/ResourcesFilter";
   import VideoTutorials from "@/components/resources/VideoTutorials";
   
   export default {
     name: "TutorialsView",
     components: {
-      FilterComponent,
+      ResourcesFilter,
       VideoTutorials
     },
+    data: function() {
+        return {
+          selectedFilter: []
+        }
+      },
   }
   </script>
   

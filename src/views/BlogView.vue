@@ -5,28 +5,28 @@
             <div class="text-heading font-medium tracking-negative-3 text-left">
               Blog Posts
             </div>
-            <FilterComponent />
+            <ResourcesFilter @onChange="(filter) => selectedFilter = filter" />
           </div>
           <div class="">
-            <BlogPost />
+            <BlogPost :selectedFilter="selectedFilter"/>
           </div>
         </div>
     </div>
     </template>
     
     <script>
-    import FilterComponent from "@/components/resources/ResourcesFilter";
+    import ResourcesFilter from "@/components/resources/ResourcesFilter";
     import BlogPost from "@/components/resources/BlogPost";
   
     export default {
       name: "BlogView",
       data: function() {
         return {
-          pages: []
+          selectedFilter: []
         }
       },
       components: {
-        FilterComponent,
+        ResourcesFilter,
         BlogPost
       },
     };
