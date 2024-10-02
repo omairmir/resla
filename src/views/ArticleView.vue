@@ -1,5 +1,5 @@
 <template>
-    <div class="border-x border-primary-700 flex flex-col w-full p-10 justify-center items-center m-auto gap-20">
+    <div class="border-x border-primary-700 flex flex-col w-full p-6 lg:p-10 justify-center items-center mx-auto gap-20">
       <div class="flex flex-col max-w-content gap-6">
         <div class="header-detail flex flex-col gap-6">
           <div class="post-title flex flex-col gap-3 justify-start">
