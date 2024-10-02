@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center gap-2">
       <div v-for="(filter, index) in filterList" :key="index">
-        <Chip :value="filter.name"  @onSelect="handleFilterChange" @onDeselect="handleFilterChange">
+        <Chip :value="filter.value"  @onSelect="handleFilterChange" @onDeselect="handleFilterChange">
           {{filter.name}}
         </Chip>
       </div>

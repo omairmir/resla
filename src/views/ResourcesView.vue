@@ -1,12 +1,11 @@
 <template>
     <div class="border-x border-primary-700 flex flex-col gap-20 p-6 lg:p-10 w-full  justify-center items-center">
-
         <div class="flex flex-col gap-8 w-full">
           <div class="flex flex-col lg:flex-row gap-6 lg:gap-0 justify-between">
             <div class="text-heading font-medium tracking-negative-3 text-left">
               Resources
             </div>
-            <FilterComponent @onChange="handleFilterSelect"/>
+            <ResourcesFilter @onChange="handleFilterSelect"/>
           </div>
           <!--get featured post from butter cms-->
           <div class="flex flex-col p-8 lg:p-14 justify-between featured-post bg-bg bg-local bg-no-repeat h-[400px] bg-cover rounded-xl">
@@ -51,13 +50,13 @@
           </div>
           <FaqsList :limited="true" :selectedFilter="selectedFilter"/>
         </div>
-
+ 
     </div>
   
   </template>
   
   <script>
-  import FilterComponent from "@/components/resources/ResourcesFilter.vue";
+  import ResourcesFilter from "@/components/resources/ResourcesFilter.vue";
   import Badge from "@/components/base/Badge";
   import CtaButton from "@/components/base/CtaButton";
   import BlogPost from "@/components/resources/BlogPost";
@@ -66,7 +65,7 @@
   export default {
     name: "ResourcePage",
     components:{
-      FilterComponent,
+      ResourcesFilter,
       Badge,
       CtaButton,
       BlogPost,
@@ -80,7 +79,7 @@
     },
     methods:{
       handleFilterSelect(filter) {
-        const filterIndex = this.selectedFilter.findIndex(selected => selected.name === filter.name);
+        const filterIndex = this.selectedFilter.findIndex(selected => selected.toLowerCase() === filter.toLowerCase());
   
         if (filterIndex !== -1) {
           this.selectedFilter.splice(filterIndex, 1);

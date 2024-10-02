@@ -42,7 +42,7 @@ export default {
           ? this.blogPostList
           : this.blogPostList.filter(blog =>
               this.selectedFilter.some(selected =>
-                  blog.tags.some(tag => tag.name === selected)
+                  blog.tags.some(tag => tag.value === selected)
               )
           );
 
@@ -55,12 +55,13 @@ export default {
   methods: {
     getArticles() {
       const butter = Butter('1c7753d56039b8a301e84d0bd5283672aa83b1d5');
+      //mock tags removed once api response provides appropriate tags
       const filters = [
-        {name: "Driving", slug: "driving"},
-        {name: "Charging", slug: "charging"},
-        {name: "Digital Key", slug: "digital_key"},
-        {name: "Rental Process", slug: "rental_process"},
-        {name: "Insurance", slug: "insurance"}
+        {name: "Driving", value: "driving"},
+        {name: "Charging", value: "charging"},
+        {name: "Digital Key", value: "digital_key"},
+        {name: "Rental Process", value: "rental_process"},
+        {name: "Insurance", value: "insurance"}
       ];
 
       butter.post.list()
@@ -75,7 +76,7 @@ export default {
             });
           });
     },
-    // remove this if post gets appropriate tags from butter
+    // remove this if post gets tags from butter
     getRandomTags(filters) {
       const numberOfTags = Math.floor(Math.random() * 3) + 1;
       const shuffledFilters = filters.sort(() => 0.5 - Math.random());

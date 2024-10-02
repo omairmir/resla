@@ -28,7 +28,7 @@
           {
             question: 'How old do you have to be to rent a Resla?',
             answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tags:[{name: 'Driving'}]
+            tags:[{name: "Driving", value: "driving"}]
           },
           {
             question: 'What fees does Resla charge?',
@@ -38,17 +38,17 @@
           {
             question: 'Is auto insurance required to rent with Resla?',
             answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tags:[{name: 'Insurance'}]
+            tags:[{name: "Insurance", value: "insurance"}]
           },
           {
             question: 'Does the damage waiver cover damage to other vehicles?',
             answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tags:[{name: 'Insurance'}]
+            tags:[{name: "Insurance", value: "insurance"}]
           },
           {
             question: 'Do I need a physical key?',
             answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tags:[{name: 'Digital Key'}]
+            tags:[{name: "Digital Key", value: "digital_key"}]
           },
           {
             question: 'Is there a limit on the number of miles I drive?',
@@ -58,17 +58,17 @@
           {
             question: 'Does the damage waiver cover damage to other vehicles?',
             answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tags:[{name: 'Driving'}, {name: 'Digital Key'}]
+            tags:[{name: "Driving", value: "driving"}, {name: "Digital Key", value: "digital_key"}]
           },
           {
             question: 'Do I still need personal car insurance if I opt in for the damage waiver?',
             answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tags:[{name: 'Driving'}, {name: 'Insurance'}]
+            tags:[{name: "Driving", value: "driving"}, {name: 'Insurance'}]
           },
           {
             question: 'Do I need a physical key?',
             answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tags:[{name: 'Driving'}, {name: 'Digital Key'}]
+            tags:[{name: "Driving", value: "driving"}, {name: "Digital Key", value: "digital_key"}]
           },
           {
             question: 'What is the mileage range with each charge?',
@@ -83,12 +83,12 @@
           {
             question: 'What are my options to charge the Tesla?',
             answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tags:[{name: 'Charging'}]
+            tags:[{name: "Charging", value: "charging"}]
           },
           {
             question: 'What are some tips for charging a Tesla?',
             answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tags:[{name: 'Charging'}]
+            tags:[{name: "Charging", value: "charging"}]
           },
           {
             question: 'What if I need help with my Resla rental?',
@@ -101,18 +101,18 @@
     },
     computed:{
       filteredFaqs() {
-        let filteredBlogs = this.selectedFilter.length === 0
+        let filteredFaqs = this.selectedFilter.length === 0
           ? this.faqs
-          : this.faqs.filter(blog =>
+          : this.faqs.filter(faq =>
               this.selectedFilter.some(selected =>
-                  blog.tags.some(tag => tag.name === selected)
+                faq.tags.some(tag => tag.value === selected)
               )
           );
 
       if (this.limited) {
-        return filteredBlogs.slice(0, 14);
+        return filteredFaqs.slice(0, 14);
       }
-      return filteredBlogs;
+      return filteredFaqs;
       }
     }
   }
