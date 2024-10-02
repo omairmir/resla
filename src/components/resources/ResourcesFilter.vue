@@ -1,10 +1,36 @@
 <template>
-  <div class="flex items-center gap-2">
-    <div v-for="(filter, index) in filterList" :key="index">
-      <Chip :value="filter.value" @onSelect="handleFilterChange(filter.value, true)"
-        @onDeselect="handleFilterChange(filter.value, false)">
-        {{ filter.name }}
+  <div class="flex">
+    <carousel
+        v-if="0"
+        :navigation-enabled="false"
+        :perPageCustom="[[400, 3], [768, 6]]"
+        :wrap-around="true"
+    class="flex items-center"
+    >
+    <slide
+        v-for="(filter, index) in filterList"
+        :key="index"
+        class="flex items-center"
+    >
+      <Chip
+          :value="filter.value"
+          @onSelect="handleFilterChange(filter.value, true)"
+          @onDeselect="handleFilterChange(filter.value, false)"
+          class="mr-2"
+      >
+      {{ filter.name }}
       </Chip>
+    </slide>
+    </carousel>
+
+    <!-- Render div layout on larger screens -->
+    <div v-else class="flex items-center gap-2">
+      <div v-for="(filter, index) in filterList" :key="index">
+        <Chip :value="filter.value" @onSelect="handleFilterChange(filter.value, true)"
+              @onDeselect="handleFilterChange(filter.value, false)">
+          {{ filter.name }}
+        </Chip>
+      </div>
     </div>
   </div>
 </template>
@@ -26,7 +52,25 @@ export default {
         { name: "Rental Process", value: 'rental_process' },
         { name: "Insurance", value: 'insurance' }
       ],
-      selectedFilters: new Set() // use set to avoid duplicate
+      selectedFilters: new Set(), // use set to avoid duplicate
+      settings: {
+        itemsToShow: 1,
+        snapAlign: 'center',
+      },
+      // breakpoints are mobile first
+      // any settings not specified will fallback to the carousel settings
+      breakpoints: {
+        // 700px and up
+        700: {
+          itemsToShow: 3.5,
+          snapAlign: 'center',
+        },
+        // 1024 and up
+        1024: {
+          itemsToShow: 5,
+          snapAlign: 'start',
+        },
+      },
     };
   },
   methods: {
