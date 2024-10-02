@@ -1,7 +1,7 @@
 <template>
-    <div class="border-x border-primary-700 flex flex-col w-full p-6 lg:p-10 justify-center items-center mx-auto gap-20">
-      <div class="flex flex-col max-w-content gap-6">
-        <div class="header-detail flex flex-col gap-6">
+  <div class="border-x border-primary-700">
+    <div class="flex flex-col w-full p-6 lg:p-10 justify-center max-w-content items-center mx-auto gap-20">
+        <div class="header-detail flex flex-col gap-6 w-full">
           <div class="post-title flex flex-col gap-3 justify-start">
             <div class="flex">
               <CtaButton :variant="'tertiary'" :leadingIcon="true" :to="'/resources'">Resources</CtaButton>
@@ -26,19 +26,23 @@
             <div class="flex gap-2">
               <Badge v-for="(tag, index) in article.tags" :key="index">{{ tag.name }}</Badge>
             </div>
-            <img :src="article.featured_image" class="h-[340px] rounded-xl object-cover w-full"/>
+            <img :src="article.featured_image" class="h-[340px] rounded-xl w-full"/>
         </div>
         <div v-html="article.body" id="content-detail-html"/>
-      </div>
     </div>
+    <LegalPageCta heading="Ready to get" sub-heading="on the road?"></LegalPageCta>
+  </div>
+    
   </template>
   
   <script>
+  import Butter from "buttercms";
+
   import CtaButton from "@/components/base/CtaButton";
   import LocationIcon from '@/components/icons/PinIcon.vue';
   import CalenderIcon from '@/components/icons/CalendarIcon';
   import Badge from "@/components/base/Badge.vue";
-  import Butter from "buttercms";
+  import LegalPageCta from "@/components/LegalPageCta.vue";
   
   export default {
     name: "BlogPostDetail",
@@ -46,7 +50,8 @@
       CtaButton,
       CalenderIcon,
       LocationIcon,
-      Badge
+      Badge,
+      LegalPageCta
     },
     data() {
       return {
@@ -66,7 +71,6 @@
         const butter = Butter('1c7753d56039b8a301e84d0bd5283672aa83b1d5');
         butter.post.retrieve(this.$route.params.slug)
             .then((response) => {
-              // console.log(res.data.data) // Check the results in the console
               this.article = response.data.data;
               document.title = this.article.seo_title + " | Resla"
               console.log(response)

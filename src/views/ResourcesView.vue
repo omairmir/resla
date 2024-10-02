@@ -89,6 +89,6 @@ export default {
 
 <style scoped>
 .bg-bg {
-  background-image: linear-gradient(270deg, rgba(17, 15, 12, 0) 0%, rgba(17, 15, 12, 0.4) 69.8%), url('../assets/img/featured-post-croped.png');
+  background-image: linear-gradient(270deg, rgba(17, 15, 12, 0) 0%, rgba(17, 15, 12, 0.4) 69.8%), url('../assets/img/resources/featured-post-croped.png');
 }
 </style>
