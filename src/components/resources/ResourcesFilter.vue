@@ -1,16 +1,12 @@
 <template>
   <div class="flex">
     <carousel
-        v-if="0"
-        :navigation-enabled="false"
-        :perPageCustom="[[400, 3], [768, 6]]"
-        :wrap-around="true"
-    class="flex items-center"
+        v-if="isMobile"
     >
     <slide
         v-for="(filter, index) in filterList"
         :key="index"
-        class="flex items-center"
+        class="flex items-center justify-between"
     >
       <Chip
           :value="filter.value"
@@ -53,27 +49,19 @@ export default {
         { name: "Insurance", value: 'insurance' }
       ],
       selectedFilters: new Set(), // use set to avoid duplicate
-      settings: {
-        itemsToShow: 1,
-        snapAlign: 'center',
-      },
-      // breakpoints are mobile first
-      // any settings not specified will fallback to the carousel settings
-      breakpoints: {
-        // 700px and up
-        700: {
-          itemsToShow: 3.5,
-          snapAlign: 'center',
-        },
-        // 1024 and up
-        1024: {
-          itemsToShow: 5,
-          snapAlign: 'start',
-        },
-      },
+      isMobile: false
     };
   },
+  mounted() {
+    window.addEventListener('resize', this.checkScreenSize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.checkScreenSize);
+  },
   methods: {
+    checkScreenSize() {
+      this.isMobile = window.innerWidth < 1024;
+    },
     handleFilterChange(value, isSelected) {
       if (isSelected) {
         this.selectedFilters.add(value);
@@ -85,3 +73,27 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.VueCarousel {
+  width: max-content;
+}
+.VueCarousel-inner{
+  flex-basis: 0px !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.VueCarousel-slide {
+  button {
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.VueCarousel-pagination {
+  display: none;
+}
+</style>
