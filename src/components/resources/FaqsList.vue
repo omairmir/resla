@@ -110,7 +110,7 @@ export default {
         },
         {
           question: 'What if I need help with my Resla rental?',
-          answer: 'We have a dedicated support team available to you 24/7. For more information, please visit our <a class="no-underline text-[#00f]" href="https://www.resla.com/contact" target="_blank" class="primary-color">contact page.</a><ul><li> Call: <a class="no-underline text-[#00f]" href="tel:+14804394079" class="primary-color">480-439-4079</a></li><li> Text: <a class="no-underline text-[#00f]" href="tel:+14804394079" class="primary-color">480-439-4079</a></li><li> Email: <a class="no-underline text-[#00f]" href="mailto:support@resla.com" class="primary-color">support@resla.com</a></li></ul>',
+          answer: 'We have a dedicated support team available to you 24/7. For more information, please visit our <a class="no-underline text-[#00f]" href="https://www.resla.com/contact" target="_blank" class="primary-color">contact page.</a><ul class="pl-8 list-circle"><li> Call: <a class="no-underline text-[#00f]" href="tel:+14804394079" class="primary-color">480-439-4079</a></li><li> Text: <a class="no-underline text-[#00f]" href="tel:+14804394079" class="primary-color">480-439-4079</a></li><li> Email: <a class="no-underline text-[#00f]" href="mailto:support@resla.com" class="primary-color">support@resla.com</a></li></ul>',
           tags: [{ name: 'Support' }]
         }
       ]
