@@ -23,9 +23,7 @@
         <!-- Answer Section with transition -->
         <transition name="fade">
             <div v-if="isOpen && !url" class="px-6 py-4 overflow-hidden">
-                <p class="text-base font-urbanist leading-6.5 text-primary-300">
-                    {{ answer }}
-                </p>
+                <p class="text-base font-urbanist leading-6.5 text-primary-300" v-html="answer" />
             </div>
         </transition>
     </div>

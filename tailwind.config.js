@@ -59,6 +59,9 @@ module.exports = {
         'negative-3': '-0.03em', // Custom value for letter spacing like -3%, -5%
         'negative-5': '-0.05em',
       },
+      listStyleType: {
+        circle: 'circle',
+      },
     },
   },
   plugins: [
