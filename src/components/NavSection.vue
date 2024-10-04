@@ -1,7 +1,7 @@
 <template>
     <div class="sticky top-0 z-50">
-        <div
-            class="relative flex flex-col lg:flex-row items-center justify-between min-h-[68px] lg:px-10 lg:py-3 gap-x-4 bg-primary-1000" :class="{'border-b border-primary-700':isScrolled}">
+        <div class="relative flex flex-col lg:flex-row items-center justify-between min-h-[68px] lg:px-10 lg:py-3 gap-x-4 bg-primary-1000"
+            :class="{ 'border-b border-primary-700': !isHome }">
             <div class="flex w-full lg:w-auto justify-between items-center order-1 lg:order-none lg:!p-0 py-4 px-6">
                 <!--logo-->
                 <router-link to="/">
@@ -14,9 +14,12 @@
                             <CtaButton variant="tertiary" class="w-6 h-6">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 6H19.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M4.5 12H19.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M4.5 18H19.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    <path d="M4.5 6H19.5" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path d="M4.5 12H19.5" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path d="M4.5 18H19.5" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" />
                                 </svg>
                             </CtaButton>
                         </template>
@@ -38,8 +41,8 @@
             </div>
         </div>
         <!-- Background overlay -->
-        <div v-if="isOverlayActive"
-            class="absolute w-full h-screen bg-[#110F0C] bg-opacity-0 z-10 backdrop-blur-[6px]"></div>
+        <div v-if="isOverlayActive" class="absolute w-full h-screen bg-[#110F0C] bg-opacity-0 z-10 backdrop-blur-[6px]">
+        </div>
     </div>
 </template>
 
@@ -65,7 +68,7 @@ export default {
         isHome() {
             return this.$route.path === "/";
         },
-        isOverlayActive(){
+        isOverlayActive() {
             return this.$store.state.isOverlayActive
         }
     },
