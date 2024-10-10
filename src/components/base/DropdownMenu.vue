@@ -22,7 +22,7 @@
 
             <ul v-else-if="options.length > 0">
                 <li v-for="option in options" :key="option[valueKey]"
-                    class="flex items-center hover:bg-primary-900 gap-4 py-3 px-3 font-urbanist text-base text-primary-300 cursor-pointer"
+                    class="flex items-center hover:bg-primary-900 gap-4 py-3 px-3 font-urbanist text-base text-primary-300 cursor-pointer rounded-lg"
                     @mousedown.prevent="selectOption(option)">
                     {{ option.label }}
                 </li>
@@ -100,7 +100,13 @@ export default {
     },
     methods: {
         toggleDropdown() {
+          console.log("toggle ", this.isOpen)
             this.isOpen = !this.isOpen;
+          setTimeout(() => {
+            this.$store.commit(
+                this.isOpen ? "activateOverlay" : "deactivateOverlay"
+            );
+          }, 100);
         },
         selectOption(option) {
             console.log('called on mount')

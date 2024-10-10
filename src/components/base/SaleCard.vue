@@ -2,7 +2,7 @@
   <div class="sale-card-wrapper border-y border-primary-700 flex gap-6 py-4 justify-between">
     <div class="flex gap-6 justify-center items-center">
       <div class="img-container flex">
-        <img :src="getImagePath" class="h-[80px] w-[80px] rounded-xl object-cover"/>
+        <img :src="image" class="h-[80px] w-[80px] rounded-xl object-cover"/>
       </div>
       <div class="content-container flex flex-col">
         <div>Model {{model}}</div>
@@ -73,9 +73,6 @@ export default {
       const color = this.color.trim().toLowerCase();
       return specialColors[color] || `bg-paint-red`;
     },
-    getImagePath() {
-      return require(`@/assets/img/models/${this.image}.png`);
-    }
   }
 }
 </script>
