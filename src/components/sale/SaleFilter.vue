@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <carousel :navigation-enabled="false" :paginationEnabled="true" :perPage="1" :perPageCustom="[[640, 3], [768, 4]]"
+    <carousel :navigation-enabled="false" :paginationEnabled="false" :perPage="1" :perPageCustom="[[640, 3], [768, 4]]"
               class="flex md:hidden" :touchDrag="true">
       <slide v-for="(filter, index) in saleFilterModelList" :key="index" class="basis-0 w-max ml-2">
         <component

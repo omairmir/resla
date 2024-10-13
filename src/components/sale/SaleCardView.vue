@@ -7,18 +7,30 @@
                   :year="vehicle.year" contact="Contact"/>
       </div>
     </div>
-    <div class="flex flex-row justify-between">
-      <CtaButton :leadingIcon="true" size="small" variant="primary" @click.stop="prevPage"
-                 :isDisabled="!hasPreviousPages">Previous
-      </CtaButton>
-      <div class="flex flex-row justify-center items-center gap-2">
-        <div class="leading-6 text-sm text-resla-ebony-40 font-normal font-urbanist">Displaying</div>
-        <div class="text-sm text-resla-ebony-40 font-semibold">{{ getPageData }}</div>
+
+    <div class="flex flex-col gap-4 w-full">
+      <div class="grid grid-cols-2 md:grid-cols-3 w-full justify-between items-center gap-4">
+        <div class="flex justify-start ">
+          <CtaButton :leadingIcon="true" size="small" variant="primary" @click.stop="prevPage" class="w-full md:w-max"
+                     :isDisabled="!hasPreviousPages">Previous
+          </CtaButton>
+        </div>
+        <div
+            class="hidden md:flex items-center justify-center mt-2.5 font-urbanist text-base leading-6.5 text-primary-400 font-normal w-full whitespace-nowrap">
+          Displaying <span class="ml-1 font-semibold">{{ filteredVehicles.length }} of {{ vehicles.length }}</span>
+        </div>
+        <div class="flex justify-end">
+          <CtaButton :trailingIcon="true" size="small" variant="primary" class="w-full md:w-max" @click.stop="nextPage" :isDisabled="!hasMorePages">
+            Next
+          </CtaButton>
+        </div>
       </div>
-      <CtaButton :trailingIcon="true" size="small" variant="primary" @click.stop="nextPage" :isDisabled="!hasMorePages">
-        Next
-      </CtaButton>
+      <div
+          class="flex items-center justify-center md:hidden mt-2.5 font-urbanist text-base leading-6.5 text-primary-400 font-normal w-full whitespace-nowrap">
+        Displaying <span class="ml-1 font-semibold">{{ filteredVehicles.length }} of {{ vehicles.length }}</span>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -1071,10 +1083,7 @@ export default {
   },
   computed: {
     hasMorePages() {
-      return this.currentPage * this.itemsPerPage < this.filteredVehicles.length;
-    },
-    getPageData() {
-      return `${((this.currentPage - 1) * this.itemsPerPage) + 1} of ${this.filteredVehicles.length}`
+      return this.currentPage * this.itemsPerPage < this.vehicles.length;
     },
     hasPreviousPages() {
       return this.currentPage > 1;
