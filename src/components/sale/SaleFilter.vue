@@ -18,6 +18,29 @@
         <ColorChip :color="color.value" class="w-max" @onSelect="handleFilterChange(color.name, true)" @onDeselect="handleFilterChange(color.name, false)"></ColorChip>
       </div>
     </div>
+
+    <carousel :navigation-enabled="false" :paginationEnabled="true" :perPage="3" :perPageCustom="[[640, 4], [768, 4]]"
+              class="flex md:hidden" :touchDrag="true">
+      <slide v-for="(filter, index) in saleFilterModelList" :key="index" class="basis-0 w-max ml-2">
+        <Chip :value="filter.value" :selected="selectedFilters.has(filter.value)"
+              @onSelect="handleFilterChange(filter.value, true)" @onDeselect="handleFilterChange(filter.value, false)"
+              class="w-max">
+          {{ filter.name }}
+        </Chip>
+      </slide>
+
+      <slide v-for="(filter, index) in saleFilterRangeList" :key="index" class="basis-0 w-max ml-2">
+        <Chip :value="filter.value" :selected="selectedFilters.has(filter.value)"
+              @onSelect="handleFilterChange(filter.value, true)" @onDeselect="handleFilterChange(filter.value, false)"
+              class="w-max">
+          {{ filter.name }}
+        </Chip>
+      </slide>
+
+      <slide v-for="(color, index) in saleFilterColorList" :key="index" class="basis-0 w-max ml-2">
+        <ColorChip :color="color.value" class="w-max" @onSelect="handleFilterChange(color.name, true)" @onDeselect="handleFilterChange(color.name, false)"></ColorChip>
+      </slide>
+    </carousel>
   </div>
   <div class="year-wrapper" @click.stop="">
     <DropdownMenu :id="'my-dropdown-year'" label="Year" variant="secondary" size="small" dropdownClass="w-[295px] right-0 top-16" :options="[
