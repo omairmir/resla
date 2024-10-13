@@ -2,45 +2,36 @@
 <div class="sale-filter-container flex justify-between items-center sticky top-[127px] lg:top-[67px] flex flex-col lg:flex-row w-full gap-4 lg:gap-0 lg:items-center bg-primary-1000 z-10 py-3">
   <div class="filter-wrapper flex justify-center items-center gap-5">
     <div class="items-center gap-2 hidden md:flex">
-      <div v-for="(model, index) in saleFilterModelList" :key="index">
-        <Chip :value="model.value" class="w-max" @onSelect="handleFilterChange(model.name, true)" @onDeselect="handleFilterChange(model.name, false)">{{ model.name }}</Chip>
-      </div>
-    </div>
-    <div class="separator flex justify-center items-center w-px h-7 text-resla-ebony-80"></div>
-    <div class="items-center gap-2 hidden md:flex">
-      <div v-for="(range, index) in saleFilterRangeList" :key="index">
-        <Chip :value="range.value" class="w-max" @onSelect="handleFilterChange(range.name, true)" @onDeselect="handleFilterChange(range.name, false)">{{ range.name }}</Chip>
-      </div>
-    </div>
-    <div class="separator flex justify-center items-center w-px h-7 text-resla-ebony-80"></div>
-    <div class="items-center gap-2 hidden md:flex">
-      <div v-for="(color, index) in saleFilterColorList" :key="index">
-        <ColorChip :color="color.value" class="w-max" @onSelect="handleFilterChange(color.name, true)" @onDeselect="handleFilterChange(color.name, false)"></ColorChip>
+      <div v-for="(model, index) in saleFilterModelList" :key="index" class="flex">
+        <component
+            :is="model.componentName"
+            :value="model.componentName === 'Chip' ? model.value : undefined"
+            class="w-max"
+            @onSelect="handleFilterChange(model.name, true)"
+            @onDeselect="handleFilterChange(model.name, false)"
+            :color="model.componentName === 'ColorChip' ? model.value : undefined"
+        >
+        {{ model.name }}
+        </component>
       </div>
     </div>
 
-    <carousel :navigation-enabled="false" :paginationEnabled="true" :perPage="3" :perPageCustom="[[640, 4], [768, 4]]"
+    <carousel :navigation-enabled="false" :paginationEnabled="true" :perPage="1" :perPageCustom="[[640, 3], [768, 4]]"
               class="flex md:hidden" :touchDrag="true">
       <slide v-for="(filter, index) in saleFilterModelList" :key="index" class="basis-0 w-max ml-2">
-        <Chip :value="filter.value" :selected="selectedFilters.has(filter.value)"
-              @onSelect="handleFilterChange(filter.value, true)" @onDeselect="handleFilterChange(filter.value, false)"
-              class="w-max">
+        <component
+            :is="filter.componentName"
+            :value="filter.componentName === 'Chip' ? filter.value : undefined"
+            class="w-max"
+            @onSelect="handleFilterChange(filter.name, true)"
+            @onDeselect="handleFilterChange(filter.name, false)"
+            :color="filter.componentName === 'ColorChip' ? filter.value : undefined"
+        >
           {{ filter.name }}
-        </Chip>
-      </slide>
-
-      <slide v-for="(filter, index) in saleFilterRangeList" :key="index" class="basis-0 w-max ml-2">
-        <Chip :value="filter.value" :selected="selectedFilters.has(filter.value)"
-              @onSelect="handleFilterChange(filter.value, true)" @onDeselect="handleFilterChange(filter.value, false)"
-              class="w-max">
-          {{ filter.name }}
-        </Chip>
-      </slide>
-
-      <slide v-for="(color, index) in saleFilterColorList" :key="index" class="basis-0 w-max ml-2">
-        <ColorChip :color="color.value" class="w-max" @onSelect="handleFilterChange(color.name, true)" @onDeselect="handleFilterChange(color.name, false)"></ColorChip>
+        </component>
       </slide>
     </carousel>
+
   </div>
   <div class="year-wrapper" @click.stop="">
     <DropdownMenu :id="'my-dropdown-year'" label="Year" variant="secondary" size="small" dropdownClass="w-[295px] right-0 top-16" :options="[
@@ -73,22 +64,16 @@ export default {
   data() {
     return {
       saleFilterModelList: [
-        { name: "Model X", value: 'model_x' },
-        { name: "Model Y", value: 'model_y' },
-        { name: "Model S", value: 'model_s' },
-        { name: "Model 3", value: 'model_3' },
-      ],
-
-      saleFilterRangeList: [
-        { name: "Long Range", value: 'long_range' },
-      ],
-
-      saleFilterColorList: [
-        { name: "Red", value: 'red' },
-        { name: "Blue", value: 'blue' },
-        { name: "Black", value: 'black' },
-        { name: "White", value: 'pearl' },
-        { name: "Grey", value: 'silver' },
+        { name: "Model X", value: 'model_x', componentName: 'Chip' },
+        { name: "Model Y", value: 'model_y', componentName: 'Chip' },
+        { name: "Model S", value: 'model_s', componentName: 'Chip' },
+        { name: "Model 3", value: 'model_3', componentName: 'Chip' },
+        { name: "Long Range", value: 'long_range', componentName: 'Chip' },
+        { name: "Red", value: 'red', componentName: 'ColorChip' },
+        { name: "Blue", value: 'blue', componentName: 'ColorChip' },
+        { name: "Black", value: 'black', componentName: 'ColorChip' },
+        { name: "White", value: 'pearl', componentName: 'ColorChip' },
+        { name: "Grey", value: 'silver', componentName: 'ColorChip' },
       ],
       selectedFilters: new Set(this.selected)
     };
