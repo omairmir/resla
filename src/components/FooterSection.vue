@@ -115,7 +115,7 @@
 
 <script>
 import ModelLink from "@/components/base/ModelLink.vue";
-import CtaButton from "./base/CtaButton.vue";
+import CtaButton from "@/components/base/CtaButton.vue";
 
 export default {
   name: "FooterSection",

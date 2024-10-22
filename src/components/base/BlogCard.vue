@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-6 w-full">
     <img :src="imageUrl" class="h-[280px] lg:h-[340px] rounded-xl object-cover w-full" />
     <div class="flex flex-col gap-3">
-      <div class="flex items-center gap-2 flex-wrap">
+      <div class="flex gap-2 flex-wrap">
         <Badge v-for="(tag, index) in tags" :key="index">{{ tag.name }}</Badge>
       </div>
       <div class="flex flex-col gap-1">

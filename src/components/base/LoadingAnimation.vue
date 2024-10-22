@@ -1,6 +1,6 @@
 <template>
   <div :class="loadingClass">
-    <!-- logo -->
+    <!-- fading logo -->
     <svg v-if="type === 'logo'" aria-hidden="true"
       class="w-14 h-9 text-primary-900 animate-pulse dark:text-gray-600 fill-primary-500" viewBox="0 0 53 36"
       fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

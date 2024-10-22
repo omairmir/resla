@@ -109,7 +109,7 @@ export default {
               #collision-protection-html {
                 margin: 20px;
               }
-               h5 {
+               h6 {
                 font-size: 2rem;
                 margin-top:24px;
                 margin-bottom:12px; 

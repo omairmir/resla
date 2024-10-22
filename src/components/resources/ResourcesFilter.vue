@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="items-center gap-2 hidden md:flex">
+    <div class="flex items-center gap-2 overflow-auto md:overflow-hidden custom-scroll">
       <div v-for="(filter, index) in filterList" :key="index" class="">
         <Chip :value="filter.value" :selected="selectedFilters.has(filter.value)"
           @onSelect="handleFilterChange(filter.value, true)" @onDeselect="handleFilterChange(filter.value, false)"
@@ -10,29 +10,15 @@
       </div>
     </div>
 
-    <carousel :navigation-enabled="false" :paginationEnabled="false" :perPage="3" :perPageCustom="[[640, 4], [768, 4]]"
-      class="flex md:hidden">
-      <slide v-for="(filter, index) in filterList" :key="index" class="basis-0 w-max ml-2">
-        <Chip :value="filter.value" :selected="selectedFilters.has(filter.value)"
-          @onSelect="handleFilterChange(filter.value, true)" @onDeselect="handleFilterChange(filter.value, false)"
-          class="w-max">
-          {{ filter.name }}
-        </Chip>
-      </slide>
-    </carousel>
-
   </div>
 </template>
 
 <script>
 import Chip from "@/components/base/Chip";
-import { Carousel, Slide } from 'vue-carousel'
 export default {
   name: 'ResourcesFilter',
   components: {
     Chip,
-    Carousel,
-    Slide
   },
   props: {
     selected: {
@@ -69,3 +55,21 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+/* Hide scrollbar in WebKit browsers (Chrome, Safari) */
+.custom-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar in Firefox */
+.custom-scroll {
+  scrollbar-width: none;
+}
+
+/* Keep overflow functionality */
+.custom-scroll {
+  overflow-x: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+}
+</style>
