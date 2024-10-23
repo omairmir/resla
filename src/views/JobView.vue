@@ -39,7 +39,7 @@
         <div class="bg-primary-700 w-full h-px"></div>
 
         <p v-html="decodeHtmlEntities(data.content)"
-          class="font-urbanist font-normal text-primary-300 leading-6.5 text-base"></p>
+          class="font-urbanist font-normal text-primary-300 leading-6.5 text-base job-detail-html"></p>
 
         <p class="font-urbanist text-sm leading-5 text-primary-300">
           Updated
@@ -126,3 +126,49 @@ export default {
   },
 };
 </script>
+<style lang="css" scoped>
+.job-detail-html{
+
+   p{
+    font-family: "Urbanist";
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #2b2825;
+    margin-top: 10px;
+    margin-bottom: 8px;
+   }
+
+   ul {
+    font-family: "Urbanist";
+    padding-left: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    list-style-type: decimal;
+    list-style-position: inside;
+    color: #2b2825;
+  }
+  
+  ul > li {
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+
+  p > strong{
+    font-family: "Urbanist";
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    color: #2b2825;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  ul > li > strong{
+    font-family: "Urbanist";
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    color: #2b2825;
+  }
+}
+</style>
