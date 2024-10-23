@@ -129,9 +129,9 @@ export default {
         {
           title: 'Account',
           links: [
-            { name: 'Profile', path: '/' },
-            { name: 'My Trips', path: '/' },
-            { name: 'Settings', path: '/' },
+            { name: 'Home', path: '/' },
+            { name: 'My Trips', path: '' },
+            { name: 'Book', path: '' },
           ],
         },
         {
@@ -150,11 +150,13 @@ export default {
           ],
         },
         {
-          title: 'Policies',
+          title: 'Legal',
           links: [
+            { name: 'Policies', path: '/policies' },
             { name: 'Terms of Use', path: '/terms' },
             { name: 'Privacy', path: '/privacy' },
             { name: 'Disclaimer', path: '/disclaimers' },
+            { name: 'Rental Agreement', path: '/rental-agreement' },
           ],
         },
       ],
